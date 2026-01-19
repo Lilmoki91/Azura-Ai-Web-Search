@@ -899,7 +899,7 @@ document.addEventListener('keydown', function(e) {
     <script>
         // Configuration
         const API_KEY = "AIzaSyD_9fPQ50G7yjIqeKUrWnVdH_Yk9m9m6SI";
-        const AI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent";
+        const AI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-12b-it:generateContent";
         
         // DUCKDUCKGO + WIKIPEDIA YANG WORKING
         const SEARCH_ENGINES = [
@@ -918,8 +918,8 @@ document.addEventListener('keydown', function(e) {
 const AzuraSecurity = {
     // Security Configuration - SIMPLE VERSION
     config: {
-        MAX_INPUT_LENGTH: 10000,           // Maximum characters sahaja
-        MAX_LINES: 500,                    // Maximum lines  
+        MAX_INPUT_LENGTH: 50,           // Maximum characters sahaja
+        MAX_LINES: 10,                    // Maximum lines  
         ALLOWED_CHARS_REGEX: /^[\w\s\p{P}\p{S}\n\r@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`±§·°–—©®™•¶§£€¥]+$/u,
         
         // Banned patterns untuk XSS protection
@@ -1143,14 +1143,14 @@ const AzuraSecurity = {
         if (!text) return '';
 
         // Limit length untuk performance
-        if (text.length > 15000) {
-            text = text.substring(0, 15000) + '\n\n[Output dipotong untuk performance]';
+        if (text.length > 50) {
+            text = text.substring(0, 50) + '\n\n[Output dipotong untuk performance]';
         }
 
         // Limit lines
         const lines = text.split('\n');
-        if (lines.length > 600) {
-            text = lines.slice(0, 600).join('\n') + '\n\n[Output dipotong untuk performance]';
+        if (lines.length > 10) {
+            text = lines.slice(0, 10).join('\n') + '\n\n[Output dipotong untuk performance]';
         }
 
         // Basic HTML escaping untuk safety display
