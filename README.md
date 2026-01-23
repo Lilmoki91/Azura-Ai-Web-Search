@@ -1,3 +1,19 @@
+# Azura AI Web Search 🎀
+
+<!-- Lencana Status & Teknologi -->
+![Python](https://img.shields.io)
+![Streamlit](https://img.shields.io)
+![Open Source](https://img.shields.io)
+![Status](https://img.shields.io)
+
+---
+
+### 🌟 Kenapa Azura AI?
+Platform ini direka untuk memberikan **carian web masa nyata** yang pantas dan tepat dengan sentuhan kecerdasan buatan.
+
+[🔗 Akses Repositori Di Sini](https://github.com)
+
+
 # 🌐 Azura AI Web Search 🇲🇾
 
 ![Azura AI Web Search Banner](https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/main/banner.png)
