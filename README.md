@@ -1,22 +1,7 @@
-# Azura AI Web Search 🎀
-
-<!-- Lencana Status & Teknologi -->
-![Python](https://img.shields.io)
-![Streamlit](https://img.shields.io)
-![Open Source](https://img.shields.io)
-![Status](https://img.shields.io)
-
----
-
-### 🌟 Kenapa Azura AI?
-Platform ini direka untuk memberikan **carian web masa nyata** yang pantas dan tepat dengan sentuhan kecerdasan buatan.
+### 🌐 Azura AI Web Search 🇲🇾
 
 [🔗 Akses Repositori Di Sini](https://github.com)
 
-
-# 🌐 Azura AI Web Search 🇲🇾
-
-![Azura AI Web Search Banner](https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/main/banner.png)
 
 Azura AI Web Search adalah projek sumber terbuka carian web yang menggunakan teknologi AI untuk memperkayakan maklumat hasil carian. Ia menggunakan enjin DuckDuckGo®, Wikipedia API, dan model AI (Gemma-3-27B IT) untuk menjana jawapan pintar dalam satu antara muka moden dan responsif.
 
