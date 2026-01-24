@@ -1195,15 +1195,20 @@ const SecuritySystem = AzuraSecurity.init();
             if (e.key === 'Enter') handleSearch();
         });
 
-/* === TAMBAH INI SELEPAS VARIABLE DECLARATIONS === */
-
+// === TAMBAH INI SELEPAS VARIABLE DECLARATIONS === //
 // Function 1: Start loading animation
 function startLoadingAnimation() {
-    searchInput.classList.add('loading');
-    searchBtn.classList.add('loading');
-    searchInput.disabled = true;
-    searchBtn.disabled = true;
-    searchInput.placeholder = 'Azura AI sedang mencari...';
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    if (searchInput && searchBtn) {
+        searchInput.classList.add('loading');
+        searchBtn.classList.add('loading');
+        searchInput.disabled = true;
+        searchBtn.disabled = true;
+        searchBtn.innerHTML = '<i class=" fas fa-spinner fa-spin"></i>';
+        searchInput.placeholder = 'Azura Ai memproses data...';
+    }
 }
 
 // Function 2: Stop loading animation  
@@ -1212,6 +1217,7 @@ function stopLoadingAnimation() {
     searchBtn.classList.remove('loading');
     searchInput.disabled = false;
     searchBtn.disabled = false;
+    searchBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i>'; 
     searchInput.placeholder = 'Ask anything...';
 }
 
