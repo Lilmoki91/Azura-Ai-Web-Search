@@ -1550,111 +1550,43 @@ function closeTerminal() {
 }
 
 //📌 sistem butang closed keybord
-// Auto-attach event listener
-// SIMPLE VERSION - Pasti bekerja
-// Auto-attach event listener untuk Close Terminal Button
+// SIMPLE MOBILE VERSION
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔧 Initializing Terminal Close Button...');
     
+    // 1. Close button
     const closeBtn = document.querySelector('.terminal-close-btn');
-    
     if (closeBtn) {
-        console.log('✅ Close button found, attaching event listener');
-        
-        // Method 1: Add event listener
-        closeBtn.addEventListener('click', function(e) {
-            console.log('🖱️ Close button clicked');
-            e.preventDefault();
-            e.stopPropagation();
-            closeTerminal();
-        });
-        
-        // Method 2: Juga attach onclick sebagai backup
-        closeBtn.onclick = function(e) {
-            console.log('🖱️ Close button onclick triggered');
-            e.preventDefault();
-            e.stopPropagation();
-            closeTerminal();
-        };
-        
-        // Tambah title/tooltip
-        closeBtn.title = "Close and return to Azura AI menu";
-        
-    } else {
-        console.warn('⚠️ Close button not found! Check HTML class name');
-        console.log('Looking for: .terminal-close-btn');
-        console.log('Available buttons:', document.querySelectorAll('button'));
+        closeBtn.onclick = closeTerminal;
     }
     
-    // ESC key untuk close (optional)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-            console.log('⌨️ ESC key pressed - closing terminal');
-            closeTerminal();
-        }
-    });
+    // 2. Android Back Button Handler
+    // Push state untuk track
+    history.pushState({page: 'terminal'}, '');
     
-    // Debug info
-    console.log('🔗 Current page:', window.location.href);
-    console.log('🎯 Return URL will be: index.html?menu=open');
+    // Handle back button
+    window.onpopstate = function(event) {
+        // Ketika user tekan back button hardware
+        console.log('Back button pressed on mobile');
+        
+        // Tanya confirmation (optional)
+        if (confirm('Return to Azura AI?')) {
+            closeTerminal();
+        } else {
+            // Block back navigation jika user cancel
+            history.pushState({page: 'terminal'}, '');
+        }
+    };
+    
+    // 3. Prevent accidental back
+    window.onbeforeunload = function() {
+        return 'Are you sure you want to leave?';
+    };
 });
 
-// Function closeTerminal dengan debugging
 function closeTerminal() {
-    console.log('🚀 closeTerminal() function executing...');
-    
-    // Dapatkan button untuk feedback visual
-    const btn = document.querySelector('.terminal-close-btn');
-    let originalHTML = '';
-    
-    if (btn) {
-        originalHTML = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Closing...';
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-        console.log('🌀 Showing loading state on button');
-    }
-    
-    // Add timestamp untuk avoid cache
-    const timestamp = Date.now();
-    const returnUrl = `index.html?menu=open&from=terminal&t=${timestamp}`;
-    
-    console.log('🔗 Redirecting to:', returnUrl);
-    console.log('⏳ Wait 500ms for loading effect...');
-    
-    // Redirect dengan sedikit delay untuk loading effect
-    setTimeout(() => {
-        console.log('🎯 Performing redirect now');
-        
-        // Option 1: Standard redirect (akan bekerja)
-        window.location.href = returnUrl;
-        
-        // Option 2: Force redirect (backup)
-        // window.location.replace(returnUrl);
-        
-        // Option 3: Jika masih tak berfungsi, alert untuk debug
-        setTimeout(() => {
-            console.warn('⚠️ Redirect seems delayed or blocked');
-            if (window.location.href.includes('terminal-verification')) {
-                console.log('⚠️ Still on terminal page, trying force reload');
-                window.location.href = returnUrl;
-            }
-        }, 1000);
-        
-    }, 500);
+    // Use replace() supaya terminal tak ada dalam history
+    window.location.replace('index.html?menu=open');
 }
-
-// Juga expose function ke global scope sebagai backup
-window.closeTerminal = closeTerminal;
-
-// Optional: Auto-test bila page load
-setTimeout(() => {
-    const closeBtn = document.querySelector('.terminal-close-btn');
-    if (closeBtn) {
-        console.log('✅ Terminal close button is ready');
-        console.log('👉 Click me or press ESC to return to Azura AI');
-    }
-}, 1000);
 
 </script>
 </body>
