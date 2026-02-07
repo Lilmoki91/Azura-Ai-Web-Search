@@ -1806,11 +1806,60 @@ aiContent.innerHTML += tagsHtml;
       .catch(err => console.log('Service Worker failed', err));
   }
 
-//📌 kod terminal verification //
+//📌 kod open terminal verification 
 function openTerminalVerification() {
     closeMenu(); // tutup menu
     setTimeout(() => window.location.href = 'terminal-verification.html', 200);
 }
+
+//📌 AZURA AI - AUTO OPEN MENU SCRIPT
+// Letak dalam <script> tag di index.html
+(function() {
+  // Function untuk buka menu
+  function openHamburgerMenu() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    
+    if (sidebar && overlay) {
+      sidebar.style.left = '0';
+      overlay.style.display = 'block';
+      console.log('✅ Menu auto-opened from terminal');
+    }
+  }
+  
+  // Function untuk tutup menu (jika diperlukan)
+  function closeHamburgerMenu() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    
+    if (sidebar && overlay) {
+      sidebar.style.left = '-250px';
+      overlay.style.display = 'none';
+    }
+  }
+  
+  // Check URL parameter bila page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('menu') === 'open') {
+      // Auto-open menu dengan delay untuk smooth transition
+      setTimeout(() => {
+        openHamburgerMenu();
+        
+        // Optional: Clean URL (remove parameter)
+        if (window.history.replaceState) {
+          const cleanUrl = window.location.pathname + window.location.hash;
+          window.history.replaceState({}, document.title, cleanUrl);
+        }
+      }, 300);
+    }
+    
+    // Expose functions ke global scope (optional)
+    window.openAzuraMenu = openHamburgerMenu;
+    window.closeAzuraMenu = closeHamburgerMenu;
+  });
+})();
 
     </script>
 </body>
