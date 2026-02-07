@@ -913,6 +913,8 @@ consoleContent.innerHTML = `
     </div>
   </div>
 `;
+  }
+}
 
 // TAMBAH FUNCTION saveQRCode() DI BAWAH
 // FUNCTION saveQRCode() YANG BETUL
@@ -988,10 +990,8 @@ async function saveQRCode() {
     }, 300);
    }
   }
- }
-} 
-
-function copyCID() {
+ 
+ function copyCID() {
   navigator.clipboard.writeText(CID).then(() => {
     const copyBtn = consoleContent.querySelector('button[onclick="copyCID()"]');
     if (copyBtn) {
