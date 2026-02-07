@@ -1526,66 +1526,64 @@ runBtn.addEventListener('click', async () => {
 });
 
 
-// 📌 sistem closed terminal
-
+// 📌 SISTEM CLOSED TERMINAL - FINAL
 function closeTerminal() {
-  const btn = document.querySelector('.terminal-close-btn');
-  
-  // Loading effect
-  if (btn) {
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Closing...';
-    btn.disabled = true;
+    const btn = document.querySelector('.terminal-close-btn');
     
-    // Redirect dengan delay
-    setTimeout(() => {
-      window.location.href = 'index.html?menu=open&from=terminal&t=' + Date.now();
-    }, 600);
-  } else {
-    // Direct redirect kalau button tak jumpa
-    setTimeout(() => {
-      window.location.href = 'index.html?menu=open&t=' + Date.now();
-    }, 300);
-  }
+    if (btn) {
+        // Spinner effect
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>closing...';
+        btn.disabled = true;
+        
+        // Redirect dengan delay untuk spinner nampak
+        setTimeout(() => {
+            window.location.href = 'index.html?menu=open';
+        }, 500);
+    } else {
+        // Direct jika button tak jumpa
+        window.location.href = 'index.html?menu=open';
+    }
 }
 
-//📌 sistem butang closed keybord
-// SIMPLE MOBILE VERSION
+// 📌 INITIALIZE
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. Close button
+    // Attach button
     const closeBtn = document.querySelector('.terminal-close-btn');
     if (closeBtn) {
         closeBtn.onclick = closeTerminal;
     }
     
-    // 2. Android Back Button Handler
-    // Push state untuk track
-    history.pushState({page: 'terminal'}, '');
-    
-    // Handle back button
-    window.onpopstate = function(event) {
-        // Ketika user tekan back button hardware
-        console.log('Back button pressed on mobile');
-        
-        // Tanya confirmation (optional)
-        if (confirm('Return to Azura AI?')) {
+    // Mobile back button handler
+    if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        history.pushState({ terminal: true }, '');
+        window.addEventListener('popstate', function() {
             closeTerminal();
-        } else {
-            // Block back navigation jika user cancel
-            history.pushState({page: 'terminal'}, '');
-        }
-    };
+        });
+    }
     
-    // 3. Prevent accidental back
-    window.onbeforeunload = function() {
-        return 'Are you sure you want to leave?';
-    };
+    // ESC key untuk desktop
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeTerminal();
+        }
+    });
 });
 
-function closeTerminal() {
-    // Use replace() supaya terminal tak ada dalam history
-    window.location.replace('index.html?menu=open');
+
+//📌📌📌📌📌📌📌
+function goToAzuraMenu() {
+    window.location.href = 'index.html?menu=open';
+}
+
+// ESC key
+document.onkeydown = function(e) {
+    if (e.key === 'Escape') goToAzuraMenu();
+};
+
+// Button
+if (document.querySelector('.terminal-close-btn')) {
+    document.querySelector('.terminal-close-btn').onclick = goToAzuraMenu;
 }
 
 </script>
