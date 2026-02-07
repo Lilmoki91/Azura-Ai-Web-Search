@@ -238,69 +238,68 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Sources Widget */
-        .sources-section h3, .answer-section h3 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+              /* Sources Widget */
+.sources-section h3, .answer-section h3 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .sources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
+.sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
 
-        .source-card {
-            background: #777;
-            border: 1px solid #777;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            height: 100%;
-        }
+.source-card {
+    background: #777 !important;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    overflow: hidden; /* TAMBAH: elakkan content overflow */
+}
 
-        .source-card:hover {
-            background: #3b82f6;
-            border-color: #3b82f6;
-            transform: translateY(-2px);
-            
-        }
+.source-card:hover {
+    background: #3b82f6 !important;
+    transform: translateY(-2px);
+}
 
-        .source-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
+.source-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word; /* TAMBAH: patahkan perkataan panjang */
+}
 
-        .source-domain {
-            font-size: 0.75rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
+.source-domain {
+    font-size: 0.75rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
 
-        .source-domain img {
-            width: 14px;
-            height: 14px;
-            border-radius: 2px;
-        }
-
+.source-domain img {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+}
+        
         /* AI Answer */
         .answer-card {
             background: transparent;
@@ -1015,8 +1014,8 @@ document.addEventListener('keydown', function(e) {
 const AzuraSecurity = {
     // Security Configuration - SIMPLE VERSION
     config: {
-        MAX_INPUT_LENGTH: 50,           // Maximum characters sahaja
-        MAX_LINES: 5,                    // Maximum lines  
+        MAX_INPUT_LENGTH: 200,           // Maximum characters sahaja
+        MAX_LINES: 10,                    // Maximum lines  
         ALLOWED_CHARS_REGEX: /^[\w\s\p{P}\p{S}\n\r@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`±§·°–—©®™•¶§£€¥]+$/u,
         
         // Banned patterns untuk XSS protection
@@ -1240,14 +1239,14 @@ const AzuraSecurity = {
         if (!text) return '';
 
         // Limit length untuk performance
-        if (text.length > 50) {
-            text = text.substring(0, 50) + '\n\n[Output dipotong untuk performance]';
+        if (text.length > 200) {
+            text = text.substring(0, 200) + '\n\n[Output dipotong untuk performance]';
         }
 
         // Limit lines
         const lines = text.split('\n');
-        if (lines.length > 5) {
-            text = lines.slice(0, 5).join('\n') + '\n\n[Output dipotong untuk performance]';
+        if (lines.length > 10) {
+            text = lines.slice(0, 10).join('\n') + '\n\n[Output dipotong untuk performance]';
         }
 
         // Basic HTML escaping untuk safety display
