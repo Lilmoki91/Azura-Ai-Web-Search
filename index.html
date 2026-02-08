@@ -1630,16 +1630,26 @@ style.innerHTML = `
 
     /* Background Gambar Azura */
     #${aiContent.id}::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url('https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.png');
-        background-size: cover;
-        background-position: center;
-        opacity: 0.3; // contras gambar
-        z-index: 0;
-        pointer-events: none;
-    }
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    
+    /* GUNA INI (relative path dari root): */
+    background-image: url('AZURA-AI.webp');
+    
+    /* Fallback untuk browser lama: */
+    background-image: 
+        -webkit-image-set(
+            url('AZURA-AI.webp') 1x,
+            url('AZURA-AI.png') 2x
+        );
+    
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+}
 
     #${aiContent.id} > * {
         position: relative;
