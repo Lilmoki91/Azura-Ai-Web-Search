@@ -993,10 +993,15 @@ document.addEventListener('keydown', function(e) {
 
 <!------------- java script ---------------->
     <script>
-        // Configuration
-        const API_KEY = "AIzaSyD_9fPQ50G7yjIqeKUrWnVdH_Yk9m9m6SI";
-        const AI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent";
-        
+            // Configuration
+    const API_KEY = import.meta.env.VITE_API_KEY || '';
+    const AI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemma-3-27b-it:generateContent";
+    
+    // Optional: Check kalau API key takde
+    if (!API_KEY) {
+        console.error('❌ API KEY TAK JUMPA! Check Vercel environment variables');
+    }
+
         // DUCKDUCKGO + WIKIPEDIA YANG WORKING
         const SEARCH_ENGINES = [
             {
