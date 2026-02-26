@@ -1696,13 +1696,35 @@ Sila berikan jawapan terbaik berdasarkan konteks penuh:
 
         try {
             // ✅ GUNA API_KEY YANG DAH DI DECRYPT
-            const response = await fetch(`${IPFS_CONFIG.aiEndpoint}?key=${API_KEY}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+            // Dalam function generateAIAnswer(), gantikan bahagian ni:
+
+const payload = {
+    contents: [{
+        parts: [{ text: prompt }]
+    }]
+};
+
+try {
+    // ✅ GUNA PROXY (BUKAN PANGGIL GOOGLE TERUS)
+    const response = await fetch('/api/proxy', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            prompt: query  // Hantar prompt je
+        })
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error?.message || "AI API Error");
+    }
+
+    const data = await response.json();
+    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    
+    
 
             if (!response.ok) {
                 const err = await response.json();
