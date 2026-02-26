@@ -1705,16 +1705,15 @@ const payload = {
 };
 
 try {
-    // ✅ GUNA PROXY (BUKAN PANGGIL GOOGLE TERUS)
-    const response = await fetch('/api/proxy', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            prompt: query  // Hantar prompt je
-        })
-    });
+                // ✅ GUNA API_KEY YANG DAH DI DECRYPT
+            const response = await fetch(`${IPFS_CONFIG.aiEndpoint}?key=${API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
 
     if (!response.ok) {
         const err = await response.json();
