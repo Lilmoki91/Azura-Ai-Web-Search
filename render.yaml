@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: azura-ai-websearch
+    env: static
+    buildCommand: npm install
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: /api/proxy.js
