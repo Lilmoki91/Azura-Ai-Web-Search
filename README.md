@@ -150,7 +150,7 @@ Sumbangan sangat dialu-alukan!
 
 · Isu / Bug: Buka issue jika jumpa pepijat atau mahu ciri baharu.
 · PR: Fork repo, commit perubahan, dan buat Pull Request — semua sumbangan dialu-alukan.
-· Diskusi: Guna menu Help & Q&A, atau hubungi pembangun di Telegram: @johansetia
+· Diskusi: Guna menu Help & Q&A, atau hubungi pembangun di Telegram: [@johansetia](https://t.me/johansetia)
 
 ---
 
@@ -197,7 +197,7 @@ Atas sumbangan dalam membangunkan teknologi AI untuk pendidikan Malaysia.
 Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat untuk menyokong:
 
 RHB Bank Malaysia
-No. Akaun: `16207200095095`
+No. Akaun: ```16207200095095```
 
 Tiada paksaan, setiap sumbangan ikhlas amat dihargai. Semoga hidup anda diberkahi dan dimurahkan rezeki.
 
