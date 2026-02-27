@@ -1,7 +1,10 @@
 # 🌐 Azura AI Web Search 🇲🇾
 
-[🔗 Akses Repositori Di Sini](https://github.com)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge&logo=cloudflare)](https://azura-ai-web-search.pages.dev)
+[![GitHub Repo](https://img.shields.io/badge/github-repo-blue?style=for-the-badge&logo=github)](https://github.com/Lilmoki91/Azura-Ai-Web-Search)
+[![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)](LICENSE)
 
+---
 
 Azura AI Web Search adalah projek sumber terbuka carian web yang menggunakan teknologi AI untuk memperkayakan maklumat hasil carian. Ia menggunakan enjin DuckDuckGo®, Wikipedia API, dan model AI (Gemma-3-27B IT) untuk menjana jawapan pintar dalam satu antara muka moden dan responsif.
 
@@ -9,16 +12,69 @@ Azura AI Web Search adalah projek sumber terbuka carian web yang menggunakan tek
 
 ---
 
-## ✨ Ciri-ciri
+## ✨ Ciri-ciri Utama
 
-- **Carian Multi-Engine**: Gabungan DuckDuckGo® & Wikipedia dalam satu input
-- **Jawapan AI**: Menjana ringkasan pintar menggunakan model AI opensource
-- **Antara muka moden**: UI gelap, responsif, ikon FontAwesome, tema gradient
-- **Panel menu & Share**: Sidebar info, sumbangan, serta butang perkongsian sosial
-- **Keselamatan**: Perlindungan XSS (input validator), had input dan corak dibenarkan
-- **Kemas kini masa nyata**: Loading animasi, butang reload, clear input pintar
-- **Sokongan Bahasa**: _multi-bahasa UI_ (default: Melayu)
-- **Sumbangan komuniti**: Kod terbuka untuk penambahbaikan bersama
+| | |
+|---|---|
+| 🔍 **Carian Multi-Engine** | Gabungan DuckDuckGo® & Wikipedia dalam satu input |
+| 🤖 **Jawapan AI** | Menjana ringkasan pintar menggunakan model AI opensource |
+| 🎨 **Antara Muka Moden** | UI gelap, responsif, ikon FontAwesome, tema gradient |
+| 📱 **PWA Sedia** | Boleh install macam app di telefon (manifest + service worker) |
+| 🛡️ **Keselamatan** | Perlindungan XSS (input validator), had input dan corak dibenarkan |
+| 🔄 **Kemas Kini Masa Nyata** | Loading animasi, butang reload, clear input pintar |
+| 🌍 **Sokongan Bahasa** | _multi-bahasa UI_ (default: Melayu) |
+| 👥 **Sumbangan Komuniti** | Kod terbuka untuk penambahbaikan bersama |
+
+---
+
+## 🚀 **Demo Langsung**
+
+🔗 **https://azura-ai-web-search.pages.dev**
+
+---
+
+## 🧠 **Sistem Keselamatan Unik**
+
+Azura AI menggunakan pendekatan keselamatan **3-lapisan** untuk melindungi API key:
+
+```
+
+┌─────────────────────────────────────┐
+│  Lapisan 1: IPFS Storage            │
+│  API key disimpan dalam IPFS        │
+│  (Content Identifier: Qmb5ES6...)   │
+├─────────────────────────────────────┤
+│  Lapisan 2: AES-GCM Encryption      │
+│  Data disulit dengan AES sebelum    │
+│  dimuat naik ke IPFS                 │
+├─────────────────────────────────────┤
+│  Lapisan 3: Cloudflare Worker        │
+│  Proxy permintaan ke Google AI       │
+│  (elak CORS & IP blocking)           │
+└─────────────────────────────────────┘
+
+```
+
+---
+
+## 📁 **Struktur Projek**
+
+```
+
+📂 Azura-Ai-Web-Search/
+├── 📄 index.html              # Halaman utama
+├── 📄 manifest.json            # Konfigurasi PWA
+├── 📄 sw.js                    # Service Worker
+├── 🖼️ AZURA-LOGO.png           # Logo utama
+├── 🖼️ AZURA-AI.webp            # Background image
+├── 🖼️ icon-192.png             # Ikon PWA (192px)
+├── 🖼️ icon-512.png             # Ikon PWA (512px)
+├── 🖼️ icon-192-maskable.png    # Ikon maskable
+├── 🖼️ icon-512-maskable.png    # Ikon maskable
+├── 📄 README.md                 # Dokumentasi
+└── 📄 LICENSE                   # Lesen MIT
+
+```
 
 ---
 
@@ -31,80 +87,128 @@ git clone https://github.com/Lilmoki91/Azura-Ai-Web-Search.git
 cd Azura-Ai-Web-Search
 ```
 
-#### 2. Guna Terus di Lokal
+2. Guna Terus di Lokal
 
-Hanya buka `index.html` dalam pelayar anda:
+Hanya buka index.html dalam pelayar anda:
 
-```txt
-(open folder, double click index.html atau buka dengan VSCode Live Server)
+```bash
+# Cara 1: Double click index.html
+# Cara 2: Guna Live Server (VSCode)
+# Cara 3: Python HTTP server
+python -m http.server 8000
 ```
 
-#### 3. Deploy ke GitHub Pages (optional)
+3. Deploy ke Cloudflare Pages (Recommended)
 
-- Fork atau klon repo ini
-- Di repo anda, aktifkan **GitHub Pages** (branch: `main`, folder `/`)
-- URL anda: `https://<username>.github.io/Azura-Ai-Web-Search`
-
----
-
-## ⚙️ Konfigurasi
-
-**Kunci API**:
-- _(pilihan/sekadar contoh untuk demo AI)_  
-  Untuk fungsi AI, sesetengah endpoint mungkin perlukan `API_KEY`.
-
-**Modifikasi Engine Carian**:
-- Anda boleh tambah atau ubah `SEARCH_ENGINES` dalam `index.html`.
+```bash
+1. Buka https://dash.cloudflare.com
+2. Klik Workers & Pages > Create application > Pages
+3. Connect GitHub repo
+4. Pilih repo Azura-Ai-Web-Search
+5. Klik "Save and Deploy"
+```
 
 ---
 
-## 📸 Screenshot
+⚙️ Konfigurasi
 
-![UI contoh](https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/main/screenshot.png)
+Kunci API:
+Sistem menggunakan IPFS + AES-GCM encryption untuk menyimpan API key. Tiada API key didedahkan dalam kod sumber.
 
----
+```javascript
+IPFS_CONFIG = {
+    cid: "Qmb5ES6JihBKaeQ9yah39Vy7QXh1Ls6CuaHBzatE8ZBdHV",
+    aesKey: "++YYOXRnKIuM69sJq6eTBm4g3yB+MKInltySJrGm9p0=",
+    gateway: "https://gateway.pinata.cloud/ipfs/"
+}
+```
 
-## 👨‍💻 Cara Guna
-
-1. **Taip soalan/carian** dalam kotak input.
-2. Tekan butang `Cari` atau `Enter`.
-3. Lihat hasil ringkasan AI dan sumber asal di panel _Sources_.
-4. Guna ikon sidebar (☰) untuk menu, info pembangun, atau _share link_.
-
----
-
-## 💡 Sumbangan
-
-- **Isu / Bug**: Buka [issue](https://github.com/Lilmoki91/Azura-Ai-Web-Search/issues) jika jumpa pepijat atau mahu ciri baharu.
-- **PR**: Fork repo, commit perubahan, dan buat **Pull Request** — semua sumbangan dialu-alukan.
-- **Diskusi**: Guna menu Help & Q&A, atau hubungi pembangun di Telegram: [@johansetia](https://t.me/johansetia)
+Modifikasi Engine Carian:
+Anda boleh tambah atau ubah SEARCH_ENGINES dalam index.html.
 
 ---
 
-## 📜 Lesen
+📸 Screenshot
 
-Projek ini di bawah [MIT License](LICENSE).
-
----
-
-## ❤️ Kredit & Terima kasih
-
-- **DuckDuckGo® API**
-- **Wikipedia REST API**
-- **Google Generative Language (Gemma)**
-- **Font Awesome, JetBrains Mono, Inter Font**
-- **Penyumbang & komuniti opensource**
+https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/main/screenshot.png
 
 ---
 
-**Dibangunkan oleh:**  
-Zulkarnain Bin Suyitno  
-Sekolah Menengah Kebangsaan Rantau Panjang, Klang, Selangor
+👨‍💻 Cara Guna
+
+1. Taip soalan/carian dalam kotak input.
+2. Tekan butang Cari atau Enter.
+3. Lihat hasil ringkasan AI dan sumber asal di panel Sources.
+4. Guna ikon sidebar (☰) untuk menu, info pembangun, atau share link.
+5. Di telefon, boleh install sebagai app (PWA).
 
 ---
 
-> Platform ini untuk pembelajaran & komuniti. Setiap sumbangan diterima dengan penuh penghargaan 🤗.
+💡 Sumbangan
+
+Sumbangan sangat dialu-alukan!
+
+· Isu / Bug: Buka issue jika jumpa pepijat atau mahu ciri baharu.
+· PR: Fork repo, commit perubahan, dan buat Pull Request — semua sumbangan dialu-alukan.
+· Diskusi: Guna menu Help & Q&A, atau hubungi pembangun di Telegram: @johansetia
 
 ---
 
-**_Jom #SumberTerbuka & hidupkan ekosistem AI Malaysia!_**
+📜 Lesen
+
+Projek ini di bawah MIT License.
+
+---
+
+❤️ Kredit & Terima kasih
+
+· DuckDuckGo® API - Enjin carian utama
+· Wikipedia REST API - Sumber kandungan pendidikan
+· Google Generative Language (Gemma) - Model AI untuk ringkasan pintar
+· Cloudflare - Hosting & Workers (proxy)
+· IPFS & Pinata - Storage encrypted API key
+· Font Awesome, JetBrains Mono, Inter Font - Tipografi & ikon
+· Penyumbang & komuniti opensource - Sokongan tidak terhingga
+
+---
+
+👨‍💻 Pembangun
+
+Zulkarnain Bin Suyitno
+🎓 Pelajar, Sekolah Menengah Kebangsaan Rantau Panjang, Klang, Selangor
+🌱 Usia: 16 tahun (2026)
+📧 Khairuldinsuyitno@gmail.com
+📱 Telegram: @johansetia
+
+---
+
+🎖️ Pengiktirafan
+
+Platform ini diiktiraf sebagai:
+
+"🎀 Master of Ribbons Educational 2026 ✨"
+
+Atas sumbangan dalam membangunkan teknologi AI untuk pendidikan Malaysia.
+
+---
+
+☕ Derma/Sumbangan
+
+Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat untuk menyokong:
+
+RHB Bank Malaysia
+No. Akaun: 16207200095095
+
+Tiada paksaan, setiap sumbangan ikhlas amat dihargai. Semoga hidup anda diberkahi dan dimurahkan rezeki.
+
+---
+
+Platform ini untuk pembelajaran & komuniti. Setiap sumbangan diterima dengan penuh penghargaan 🤗.
+
+---
+
+Jom #SumberTerbuka & hidupkan ekosistem AI Malaysia!
+
+🇲🇾 Dibangunkan di Malaysia dengan ❤️ untuk pendidikan
+
+🎀 Azura AI - Master of Ribbons Educational 2026 ✨
