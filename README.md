@@ -178,7 +178,7 @@ Zulkarnain Bin Suyitno
 🎓 Pelajar, Sekolah Menengah Kebangsaan Rantau Panjang, Klang, Selangor
 🌱 Usia: 16 tahun (2026)
 📧 Khairuldinsuyitno@gmail.com
-📱 Telegram: @johansetia
+📱 Telegram: https://t.me/johansetia
 
 ---
 
@@ -197,7 +197,7 @@ Atas sumbangan dalam membangunkan teknologi AI untuk pendidikan Malaysia.
 Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat untuk menyokong:
 
 RHB Bank Malaysia
-No. Akaun: 16207200095095
+No. Akaun: `16207200095095`
 
 Tiada paksaan, setiap sumbangan ikhlas amat dihargai. Semoga hidup anda diberkahi dan dimurahkan rezeki.
 
