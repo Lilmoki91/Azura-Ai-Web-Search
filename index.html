@@ -752,11 +752,13 @@ footer::before {
      style="padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
     <i class="fas fa-dna" style="margin-right: 10px; color: #ffcc00;"></i>
     <span>verify platform</span>
-</div></div>
+</div>
+</div>
     
-    <!-- Tab Icon dan Info Donasi -->
+<!-- Tab Icon dan Info Donasi -->
     <div style="margin-top: 30px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 5px; font-size: 12px; color: #aaa;">
       <p style="margin-bottom: 10px; line-height: 1.4; text-align: center; color: #fff; font-size: 14px;">
+
 
   <strong><i>Azura AI Web Search</i></strong>   
   </p>
@@ -773,41 +775,110 @@ footer::before {
       </p>
       
       <div style="margin: 15px 0; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 5px;">
-        <div style="margin-bottom: 5px; color: #fff;">
-          <i class="fas fa-university"></i> <strong>RHB Bank Malaysia</strong>
-        </div>
-        <div style="margin-bottom: 8px; font-family: monospace;">
-          No Akaun: <span id="accountNumber">16207200095095</span>
-        </div>
-        <button id="copyAccountBtn" style="
-          width: 100%;
-          background: rgba(0,122,255,0.2);
-          border: 1px solid #007AFF;
-          color: #007AFF;
-          padding: 6px 12px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 11px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s;
-        ">
-          <i class="fas fa-copy" style="margin-right: 5px;"></i> Salin Nombor Akaun
-        </button>
-      </div>
-      
+  <div style="margin-bottom: 5px; color: #fff;">
+    <i class="fas fa-university"></i> <strong>Touch 'n Go eWallet</strong>
+  </div>
+  
+  <!-- Maklumat Akaun -->
+  <div style="margin-bottom: 8px; font-family: monospace; color: #fff;">
+    No Akaun: <span id="accountNumber">150979504703</span>
+  </div>
+  
+  <!-- Button Copy -->
+  <button id="copyAccountBtn" style="
+    width: 100%;
+    background: rgba(0,122,255,0.2);
+    border: 1px solid #007AFF;
+    color: #007AFF;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    margin-bottom: 15px;
+  ">
+    <i class="fas fa-copy" style="margin-right: 5px;"></i> Salin Nombor Akaun
+  </button>
+  
+  <!-- QR Code Image -->
+  <div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/TNG-QR.jpg" 
+         alt="Touch 'n Go QR Code" 
+         id="qrCodeImage"
+         style="max-width: 120px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+    <p style="color: #aaa; font-size: 10px; margin-top: 5px;">Imbas QR Code untuk bayaran</p>
+    
+    <!-- Button Save QR -->
+    <button id="saveQrBtn" style="
+      width: 100%;
+      background: rgba(52, 199, 89, 0.2);
+      border: 1px solid #34C759;
+      color: #34C759;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      margin-top: 10px;
+    ">
+      <i class="fas fa-download" style="margin-right: 5px;"></i> Save QR Code
+    </button>
+  </div>
+</div>
+
+<script>
+// Function untuk salin nombor akaun
+document.getElementById('copyAccountBtn').addEventListener('click', function() {
+  var accountNumber = document.getElementById('accountNumber').innerText;
+  navigator.clipboard.writeText(accountNumber).then(function() {
+    alert('Nombor akaun telah disalin!');
+  }, function() {
+    alert('Gagal menyalin nombor akaun.');
+  });
+});
+
+// Function untuk save QR Code
+document.getElementById('saveQrBtn').addEventListener('click', function() {
+  var qrImage = document.getElementById('qrCodeImage');
+  
+  // Dapatkan URL gambar
+  var imgUrl = qrImage.src;
+  
+  // Buat element link sementara
+  var link = document.createElement('a');
+  link.href = imgUrl;
+  link.download = 'TNG-QR.jpg'; // Nama fail untuk disimpan
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+</script>
+
+<!-- Optional: Tambah badge atau icon untuk lebih menarik -->
+<div style="display: flex; gap: 5px; justify-content: center; margin-bottom: 10px;">
+  <span style="background: #FF5F1F; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px;">✓ Secure</span>
+  <span style="background: #00A86B; color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px;">✓ Verified</span>
+</div>
+
+<!--Malumat pembangun sistem-->      
       <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
         <div style="color: #fff; margin-bottom: 5px;">
           <i class="fas fa-user-cog"></i> <strong>Pembina platform:</strong>
         </div>
         <a href="https://t.me/johansetia" target="_blank" style="color: #0088cc; text-decoration: none; display: flex; align-items: center; font-size: 11px;">
-          <i class="fab fa-telegram" style="margin-right: 5px;"></i> Telegram — @johansetia
+          <i class="fab fa-telegram" style="margin-right: 5px; font-size: 15px;"></i> Telegram — @johansetia
         </a>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- Overlay untuk tutup menu -->
 <div id="menuOverlay" style="
@@ -1517,132 +1588,196 @@ document.addEventListener('keydown', function(e) {
         }
     }
 
-    async function fetchSearchResultsWorking(query) {
-        const results = [];
+// 📌📌📌📌📌📌 
+// FUNGSI SEARCH BARU YANG 100% WORKING
+        async function fetchSearchResultsWorking(query) {
+            const results = [];
+// ==============================================
+// 📚 TAMBAH AUTO DETECT UNTUK TORRENT - MULAI SINI
+// ==============================================
+    
+    // Senarai kata kunci torrent
+    const torrentKeywords = [
+        'buku', 'ebook', 'pdf', 'buku teks', 'novel', 'jurnal',
+        'book', 'textbook', 'ebook pdf', 'journal', 'paper',
+        'sejarah', 'dokumen', 'archive', 'tutorial', 'course'
+    ];
+
+    // Function untuk search torrent
+    async function searchTorrent(query) {
+        const torrentResults = [];
         
-        try {
-            const wikiUrl = SEARCH_ENGINES[0].url(query);
-            const wikiResponse = await fetch(wikiUrl);
-            
-            if (wikiResponse.ok) {
-                const wikiData = await wikiResponse.json();
-                if (wikiData.title && wikiData.extract) {
-                    results.push({
-                        title: wikiData.title,
-                        url: wikiData.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(query.replace(/ /g, '_'))}`,
-                        content: wikiData.extract,
-                        source: 'Wikipedia'
-                    });
-                }
-            }
-        } catch (e) {
-            console.log("Wikipedia search failed:", e);
-        }
-
-        try {
-            const ddgUrl = SEARCH_ENGINES[1].url(query);
-            const ddgResponse = await fetch(ddgUrl);
-            
-            if (ddgResponse.ok) {
-                const ddgData = await ddgResponse.json();
-                
-                if (ddgData.AbstractText) {
-                    results.push({
-                        title: ddgData.Heading || query,
-                        url: ddgData.AbstractURL || `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
-                        content: ddgData.AbstractText,
-                        source: 'DuckDuckGo'
-                    });
-                }
-                
-                if (ddgData.RelatedTopics) {
-                    ddgData.RelatedTopics.slice(0, 3).forEach(topic => {
-                        if (topic.FirstURL && topic.Text) {
-                            results.push({
-                                title: topic.Text.split(' - ')[0] || topic.Text,
-                                url: topic.FirstURL,
-                                content: topic.Text,
-                                source: 'DuckDuckGo'
-                            });
-                        }
-                    });
-                }
-            }
-        } catch (e) {
-            console.log("DuckDuckGo search failed:", e);
-        }
-
-        if (results.length === 0) {
-            results.push({
-                title: `Search: ${query}`,
-                url: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
-                content: `No direct search results found for "${query}". The AI will answer based on its knowledge.`,
-                source: 'Web Search'
-            });
-        }
-
-        return results.slice(0, 5);
-    }
-
-    function renderSources(results) {
-        sourcesGrid.innerHTML = '';
-        
-        if (results.length === 0) {
-            sourcesGrid.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">No sources found. AI will answer from knowledge.</p>';
-            return;
-        }
-
-        results.forEach(res => {
-            let domain = '';
-            try {
-                domain = new URL(res.url).hostname.replace('www.', '');
-            } catch(e) { domain = 'web'; }
-
-            const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
-
-            const card = document.createElement('a');
-            card.className = 'source-card';
-            card.href = res.url;
-            card.target = '_blank';
-            card.innerHTML = `
-                <div class="source-title">${res.title}</div>
-                <div class="source-domain">
-                    <img src="${faviconUrl}" alt="" onerror="this.style.display='none'">
-                    ${domain} • ${res.source}
-                </div>
-            `;
-            sourcesGrid.appendChild(card);
+        // Library Genesis
+        torrentResults.push({
+            title: `📚 ${query} - Buku Teks (Library Genesis)`,
+            url: `https://libgen.is/search.php?req=${encodeURIComponent(query)}`,
+            content: `Carian untuk "${query}" dalam perpustakaan buku teks percuma.`,
+            source: 'Torrent - Library Genesis'
         });
+        
+        // Academic Torrents
+        torrentResults.push({
+            title: `🔬 ${query} - Jurnal Akademik (Academic Torrents)`,
+            url: `https://academictorrents.com/browse.php?search=${encodeURIComponent(query)}`,
+            content: `Dataset penyelidikan untuk "${query}".`,
+            source: 'Torrent - Academic Torrents'
+        });
+        
+        // Internet Archive
+        torrentResults.push({
+            title: `📜 ${query} - Arkib Digital (Internet Archive)`,
+            url: `https://archive.org/search?query=${encodeURIComponent(query)}`,
+            content: `Buku dan dokumen sejarah untuk "${query}".`,
+            source: 'Torrent - Internet Archive'
+        });
+        
+        return torrentResults;
     }
 
-    async function generateAIAnswer(query, searchResults) {
-        // Tunggu API key sedia
-        if (!apiKeyLoaded) {
-            await loadAPIKey();
-            if (!apiKeyLoaded) {
-                aiContent.innerHTML = '<p class="error">❌ Gagal muat API key</p>';
+    // AUTO DETECT
+    const shouldUseTorrent = torrentKeywords.some(
+        keyword => query.toLowerCase().includes(keyword.toLowerCase())
+    );
+
+    if (shouldUseTorrent) {
+        try {
+            console.log('📚 Mencari dalam torrent untuk', query);
+            const torrentResults = await searchTorrent(query);
+            if (torrentResults.length > 0) {
+                results.push(...torrentResults);
+            }
+        } catch (e) {
+            console.log('Torrent search error:', e);
+        }
+    }
+    
+// ==============================================
+// CARIAN BIASA (Wikipedia, DuckDuckGo) - TERUSKAN macam biasa!
+// ==============================================
+    
+ // Cuba Wikipedia dulu (paling reliable)
+            try {
+                const wikiUrl = SEARCH_ENGINES[0].url(query);
+                const wikiResponse = await fetch(wikiUrl);
+                
+                if (wikiResponse.ok) {
+                    const wikiData = await wikiResponse.json();
+                    if (wikiData.title && wikiData.extract) {
+                        results.push({
+                            title: wikiData.title,
+                            url: wikiData.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(query.replace(/ /g, '_'))}`,
+                            content: wikiData.extract,
+                            source: 'Wikipedia'
+                        });
+                    }
+                }
+            } catch (e) {
+                console.log("Wikipedia search failed:", e);
+            }
+
+            // Cuba DuckDuckGo sebagai fallback
+            try {
+                const ddgUrl = SEARCH_ENGINES[1].url(query);
+                const ddgResponse = await fetch(ddgUrl);
+                
+                if (ddgResponse.ok) {
+                    const ddgData = await ddgResponse.json();
+                    
+                    // Ambil Abstract jika ada
+                    if (ddgData.AbstractText) {
+                        results.push({
+                            title: ddgData.Heading || query,
+                            url: ddgData.AbstractURL || `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
+                            content: ddgData.AbstractText,
+                            source: 'DuckDuckGo'
+                        });
+                    }
+                    
+                    // Ambil Related Topics
+                    if (ddgData.RelatedTopics) {
+                        ddgData.RelatedTopics.slice(0, 3).forEach(topic => {
+                            if (topic.FirstURL && topic.Text) {
+                                results.push({
+                                    title: topic.Text.split(' - ')[0] || topic.Text,
+                                    url: topic.FirstURL,
+                                    content: topic.Text,
+                                    source: 'DuckDuckGo'
+                                });
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.log("DuckDuckGo search failed:", e);
+            }
+
+            // Jika masih tiada results, buat fallback manual
+            if (results.length === 0) {
+                results.push({
+                    title: `Search: ${query}`,
+                    url: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+                    content: `No direct search results found for "${query}". The AI will answer based on its knowledge.`,
+                    source: 'Web Search'
+                });
+            }
+
+            return results.slice(0, 5); // Return max 5 results
+        }
+
+        function renderSources(results) {
+            sourcesGrid.innerHTML = '';
+            
+            if (results.length === 0) {
+                sourcesGrid.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">No sources found. AI will answer from knowledge.</p>';
                 return;
             }
-        }
 
-        let historyContext = "";
-        if (conversationHistory.length > 0) {
-            historyContext = "SEJARAH PERBUALAN TERDAHULU:\n";
-            conversationHistory.forEach((msg, index) => {
-                historyContext += `${index + 1}. ${msg.role === 'user' ? 'SOALAN' : 'JAWAPAN'}: ${msg.content}\n\n`;
+            results.forEach(res => {
+                // Extract domain
+                let domain = '';
+                try {
+                    domain = new URL(res.url).hostname.replace('www.', '');
+                } catch(e) { domain = 'web'; }
+
+                const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+
+                const card = document.createElement('a');
+                card.className = 'source-card';
+                card.href = res.url;
+                card.target = '_blank';
+                card.innerHTML = `
+                    <div class="source-title">${res.title}</div>
+                    <div class="source-domain">
+                        <img src="${faviconUrl}" alt="" onerror="this.style.display='none'">
+                        ${domain} • ${res.source}
+                    </div>
+                `;
+                sourcesGrid.appendChild(card);
             });
-            historyContext += "\n" + "=".repeat(50) + "\n";
         }
 
-        let context = "";
-        if (searchResults.length > 0) {
-            context = "HASIL CARIAN WEB TERKINI:\n" + searchResults.map((r, i) => 
-                `[${i+1}] ${r.title}\nURL: ${r.url}\nContent: ${r.content}\n`
-            ).join("\n");
-        } else {
-            context = "Tiada hasil carian web terkini. Sila jawab berdasarkan pengetahuan umum.";
-        }
+        async function generateAIAnswer(query, searchResults) {
+            // TAMBAH SEJARAH PERBUALAN KE DALAM PROMPT
+            let historyContext = "";
+            if (conversationHistory.length > 0) {
+                historyContext = "SEJARAH PERBUALAN TERDAHULU:\n";
+                conversationHistory.forEach((msg, index) => {
+                    historyContext += `${index + 1}. ${msg.role === 'user' ? 'SOALAN' : 'JAWAPAN'}: ${msg.content}\n\n`;
+                });
+                historyContext += "\n" + "=".repeat(50) + "\n";
+            }
 
+            // Prepare Context - lebih baik handling untuk no results
+            let context = "";
+            if (searchResults.length > 0) {
+                context = "HASIL CARIAN WEB TERKINI:\n" + searchResults.map((r, i) => 
+                    `[${i+1}] ${r.title}\nURL: ${r.url}\nContent: ${r.content}\n`
+                ).join("\n");
+            } else {
+                context = "Tiada hasil carian web terkini. Sila jawab berdasarkan pengetahuan umum.";
+            }    
+    
+// 📌📌📌📌📌📌📌        
         const prompt = `
 Anda adalah 🌐Azura Ai web search, pembantu carian website berbahasa Malaysia dan English untuk carian sumber website pendidikan sekolah. Azura AI, pemegang gelaran "🎀 Master of Ribbons Educational 2026 ✨".
 
