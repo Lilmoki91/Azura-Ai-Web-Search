@@ -1,150 +1,117 @@
 // ==============================================
-// 🌐 World ID Login untuk Azura AI (V2 - Fixed)
+// 🌐 AZURA AI - WORLD ID 4.0 LOGIN (CONNECT DENGAN WORKER)
 // ==============================================
 
-// Konfigurasi World ID
-const WORLD_ID_CONFIG = {
-  app_id: "app_16b861659b5f66f3fc33d9d515a82f80",
-  action: "azura_login", 
-  signal: "azura_user"
-};
-
-// Debug mode - ON
+const WORKER_URL = 'https://azura-ai.khairuldinsuyitno.workers.dev';
+const APP_ID = 'app_16b861659b5f66f3fc33d9d515a82f80';
+const ACTION = 'azura_login';
 const DEBUG = true;
 
 function log(...args) {
-  if (DEBUG) console.log("🔐 [WorldID]:", ...args);
+  if (DEBUG) console.log('🔐 [WorldID4]:', ...args);
 }
 
-// Tunggu IDKitWidget sedia
-function waitForIDKit(timeout = 5000) {
+// Simpan bukti login
+function saveWorldID(proof) {
+  log('✅ Proof verified!', proof);
+  
+  localStorage.setItem('world_verified', 'true');
+  localStorage.setItem('world_nullifier', proof.nullifier || proof.nullifier_hash);
+  
+  if (typeof window.showSearchUI === 'function') {
+    window.showSearchUI();
+  } else {
+    document.getElementById('searchSection').style.display = 'block';
+    document.getElementById('loginSection').style.display = 'none';
+  }
+  
+  setTimeout(() => {
+    alert('✅ World ID verified! Selamat datang ke Azura AI!');
+  }, 100);
+}
+
+// Periksa login status
+function isWorldIDVerified() {
+  return localStorage.getItem('world_verified') === 'true';
+}
+
+// Dapatkan RP signature dari worker
+async function getRPSignature(action) {
+  log('📡 Getting RP signature from worker...');
+  const response = await fetch(`${WORKER_URL}/api/get-signature`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action })
+  });
+  
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Gagal dapatkan signature: ${error}`);
+  }
+  
+  const data = await response.json();
+  log('✅ RP signature received', data);
+  return data;
+}
+
+// Hantar proof untuk verifikasi ke worker
+async function verifyProof(proofPayload) {
+  log('📡 Sending proof to worker for verification...');
+  const response = await fetch(`${WORKER_URL}/api/verify-proof`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(proofPayload)
+  });
+  
+  const result = await response.json();
+  log('✅ Verification result:', result);
+  return result;
+}
+
+// Muat IDKit (guna versi 1.4.1 untuk widget)
+function loadIDKit() {
   return new Promise((resolve, reject) => {
-    const start = Date.now();
+    if (window.IDKitWidget) {
+      log('✅ IDKit already loaded');
+      resolve();
+      return;
+    }
     
-    const check = () => {
-      if (window.IDKitWidget) {
-        log("✅ IDKitWidget sedia!");
-        resolve(window.IDKitWidget);
-      } else if (Date.now() - start > timeout) {
-        reject(new Error("IDKitWidget tak dimuatkan"));
-      } else {
-        setTimeout(check, 100);
-      }
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@worldcoin/idkit@1.4.1/dist/idkit.umd.min.js';
+    script.onload = () => {
+      log('✅ IDKit loaded');
+      resolve();
     };
-    
-    check();
+    script.onerror = () => {
+      reject(new Error('Gagal muat IDKit'));
+    };
+    document.head.appendChild(script);
   });
 }
 
-// Simpan bukti login (improved)
-function saveWorldID(proof) {
-  log("✅ Proof diterima:", proof);
-  
-  try {
-    // Simpan dengan timestamp
-    const session = {
-      verified: true,
-      nullifier: proof.nullifier_hash,
-      timestamp: Date.now(),
-      expires: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 hari
-    };
-    
-    localStorage.setItem("world_session", JSON.stringify(session));
-    localStorage.setItem("world_verified", "true");
-    localStorage.setItem("world_nullifier", proof.nullifier_hash);
-    
-    log("🔓 Data disimpan dalam localStorage");
-    
-    // Panggil showSearchUI dengan pelbagai cara
-    if (typeof window.showSearchUI === "function") {
-      log("✅ Memanggil window.showSearchUI()");
-      window.showSearchUI();
-    } 
-    else if (typeof showSearchUI === "function") {
-      log("✅ Memanggil showSearchUI() global");
-      showSearchUI();
-    }
-    else {
-      log("❌ Fungsi showSearchUI tak jumpa!");
-      
-      // Cubaan manual
-      const searchSection = document.getElementById('searchSection');
-      const loginSection = document.getElementById('loginSection');
-      
-      if (searchSection && loginSection) {
-        log("🔄 Cubaan manual: tunjuk search section");
-        loginSection.style.display = 'none';
-        searchSection.style.display = 'block';
-        
-        // Buang container login kalau ada
-        const container = document.getElementById('worldid-container');
-        if (container) container.remove();
-      }
-    }
-    
-    // Berjaya!
-    setTimeout(() => {
-      alert("✅ World ID verified! Selamat datang ke Azura AI!");
-    }, 100);
-    
-  } catch (e) {
-    console.error("❌ Gagal simpan session:", e);
-  }
-}
-
-// Periksa login status (improved)
-function isWorldIDVerified() {
-  try {
-    // Check cara baru dulu
-    const session = JSON.parse(localStorage.getItem("world_session") || "{}");
-    
-    if (session.verified) {
-      // Check expiry
-      if (session.expires && Date.now() > session.expires) {
-        log("⏰ Session expired");
-        localStorage.removeItem("world_session");
-        localStorage.removeItem("world_verified");
-        return false;
-      }
-      return true;
-    }
-    
-    // Fallback ke cara lama
-    return localStorage.getItem("world_verified") === "true";
-  } catch (e) {
-    return localStorage.getItem("world_verified") === "true";
-  }
-}
-
-// Buat butang login (improved styling & positioning)
+// Buat butang login
 async function initWorldIDLogin() {
-  log("📢 Initializing World ID login...");
+  log('🚀 Initializing World ID 4.0...');
   
-  // Check jika dah login
   if (isWorldIDVerified()) {
-    log("✅ User dah verified, trigger UI terus");
-    if (typeof window.showSearchUI === "function") {
+    log('✅ User already verified');
+    if (typeof window.showSearchUI === 'function') {
       window.showSearchUI();
     }
     return;
   }
   
-  // Tunggu IDKit siap
   try {
-    await waitForIDKit();
+    await loadIDKit();
   } catch (e) {
-    console.error("❌ IDKit tak siap:", e);
-    alert("Gagal muatkan World ID SDK. Sila refresh halaman.");
+    alert('Gagal muatkan World ID SDK. Sila refresh halaman.');
     return;
   }
   
-  // Buang container lama kalau ada
-  const oldContainer = document.getElementById('worldid-container');
-  if (oldContainer) oldContainer.remove();
-  
-  // Cipta container baru
-  const container = document.createElement("div");
-  container.id = "worldid-container";
+  // Cipta container dialog
+  const container = document.createElement('div');
+  container.id = 'worldid-container';
   container.style.cssText = `
     position: fixed;
     top: 0;
@@ -158,9 +125,8 @@ async function initWorldIDLogin() {
     align-items: center;
     justify-content: center;
   `;
-
-  // Kotak dialog
-  const dialog = document.createElement("div");
+  
+  const dialog = document.createElement('div');
   dialog.style.cssText = `
     background: linear-gradient(145deg, #1a1f2e, #0f1117);
     padding: 40px;
@@ -172,121 +138,95 @@ async function initWorldIDLogin() {
     width: 90%;
     position: relative;
   `;
-
-  // Title
-  const title = document.createElement("h2");
-  title.style.cssText = `
-    color: white;
-    margin-bottom: 20px;
-    font-size: 24px;
-  `;
-  title.innerHTML = '🌐 <span style="color: #007AFF;">Azura AI</span> Login';
-  dialog.appendChild(title);
-
-  // Subtitle
-  const subtitle = document.createElement("p");
-  subtitle.style.cssText = `
-    color: #94a3b8;
-    margin-bottom: 30px;
-    font-size: 14px;
-  `;
-  subtitle.textContent = "Sila sahkan dengan World ID untuk teruskan";
-  dialog.appendChild(subtitle);
-
-  // Butang login
-  const btn = document.createElement("button");
-  btn.innerText = "🔓 Login dengan World ID";
-  btn.style.cssText = `
-    padding: 15px 40px;
-    font-size: 18px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s;
-    width: 100%;
-  `;
-
-  btn.onmouseover = () => {
-    btn.style.transform = "scale(1.02)";
-    btn.style.boxShadow = "0 0 20px #667eea";
-  };
   
-  btn.onmouseout = () => {
-    btn.style.transform = "scale(1)";
-    btn.style.boxShadow = "none";
-  };
-
-  btn.onclick = () => {
-    log("🔑 Opening World ID widget...");
-    
-    try {
-      const idkit = new window.IDKitWidget({
-        app_id: WORLD_ID_CONFIG.app_id,
-        action: WORLD_ID_CONFIG.action,
-        signal: WORLD_ID_CONFIG.signal,
-        onSuccess: (proof) => {
-          log("✅ World ID success!");
-          container.remove(); // Buang dialog
-          saveWorldID(proof);
-        },
-        onError: (error) => {
-          console.error("❌ World ID error:", error);
-          alert("Ralat World ID: " + (error.message || "Sila cuba lagi"));
-        }
-      });
-      idkit.open();
-    } catch (e) {
-      console.error("❌ Gagal buka IDKit:", e);
-      alert("Gagal buka World ID. Pastikan sambungan internet OK.");
-    }
-  };
-
-  dialog.appendChild(btn);
-  
-  // Butang tutup
-  const closeBtn = document.createElement("button");
-  closeBtn.innerHTML = "✕";
-  closeBtn.style.cssText = `
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: #ff4444;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px 10px;
+  dialog.innerHTML = `
+    <h2 style="color: white; margin-bottom: 20px;">🌐 <span style="color: #007AFF;">Azura AI</span> Login</h2>
+    <p style="color: #94a3b8; margin-bottom: 30px;">Sila sahkan dengan World ID untuk teruskan</p>
+    <button id="worldid-login-btn" style="
+      padding: 15px 40px;
+      font-size: 18px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      width: 100%;
+    ">🔓 Login dengan World ID</button>
+    <button id="close-dialog" style="
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #ff4444;
+      font-size: 24px;
+      cursor: pointer;
+    ">✕</button>
   `;
-  closeBtn.onclick = () => container.remove();
-  closeBtn.onmouseover = () => closeBtn.style.color = "#ff0000";
-  closeBtn.onmouseout = () => closeBtn.style.color = "#ff4444";
-  dialog.appendChild(closeBtn);
-
+  
   container.appendChild(dialog);
   document.body.appendChild(container);
   
-  log("✅ Butang World ID dipaparkan");
+  document.getElementById('close-dialog').onclick = () => container.remove();
+  
+  document.getElementById('worldid-login-btn').onclick = async () => {
+    try {
+      // Dapatkan RP signature dari worker dulu
+      const rpSig = await getRPSignature(ACTION);
+      
+      container.remove();
+      
+      // Buka World ID widget
+      const idkit = new window.IDKitWidget({
+        app_id: APP_ID,
+        action: ACTION,
+        signal: 'azura_user',
+        onSuccess: async (proof) => {
+          log('✅ World ID success!', proof);
+          
+          // Hantar proof ke worker untuk verifikasi
+          try {
+            const verification = await verifyProof(proof);
+            log('✅ Final verification:', verification);
+            
+            if (verification.success || verification.ok) {
+              saveWorldID(proof);
+            } else {
+              alert('Verification gagal: ' + (verification.error || 'Unknown error'));
+            }
+          } catch (e) {
+            console.error('❌ Verification failed:', e);
+            alert('Verification gagal di server');
+          }
+        },
+        onError: (error) => {
+          console.error('❌ World ID error:', error);
+          alert('Ralat World ID: ' + (error.message || 'Sila cuba lagi'));
+        }
+      });
+      
+      idkit.open();
+      
+    } catch (error) {
+      console.error('❌ Login error:', error);
+      alert('Gagal: ' + error.message);
+    }
+  };
 }
 
-// Mulakan
-log("🚀 World ID script dimulakan...");
-
+// Start
+log('🚀 World ID 4.0 script dimulakan...');
 if (!isWorldIDVerified()) {
-  log("⏳ User belum login - menyediakan butang...");
-  
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initWorldIDLogin);
   } else {
     initWorldIDLogin();
   }
 } else {
-  log("✅ User sudah login - memanggil search UI...");
-  if (typeof window.showSearchUI === "function") {
+  log('✅ User already verified');
+  if (typeof window.showSearchUI === 'function') {
     window.showSearchUI();
-  } else {
-    log("❌ showSearchUI tak jumpa!");
   }
 }
