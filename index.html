@@ -2336,17 +2336,17 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-//📌 kod panggil world id 
+<!--📌 kod panggil world id -->
 function showSearchUI() {
-  // tunjuk bahagian search platform
   document.getElementById("searchSection").style.display = "block";
-
-  // sembunyikan bahagian login placeholder dari engine (jika ada)
   document.getElementById("loginSection").style.display = "none";
 }
 </script>
 
-<!-- TAMBAH CDN IDKIT SEBELUM worldid-login.js -->
+<!-- ✅ CDN IDKIT (WAJIB) -->
+<script src="https://cdn.jsdelivr.net/npm/@worldcoin/idkit@1.4.1/dist/idkit.umd.min.js"></script>
+
+<!-- ✅ Kod login awak -->
 <script src="./worldid-login.js"></script>
 
 </body>
