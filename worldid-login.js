@@ -2,7 +2,7 @@
 // 🌐 AZURA AI - WORLD ID 4.0 (PASTI JALAN)
 // ==============================================
 
-const WORKER_URL = 'https://azura-ai.khairuldinsuyitno.workers.dev';
+const WORKER_URL = '';
 const APP_ID = 'app_16b861659b5f66f3fc33d9d515a82f80';
 const ACTION = 'azura_login';
 const DEBUG = true;
