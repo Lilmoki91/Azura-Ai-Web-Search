@@ -632,21 +632,11 @@ footer::before {
   width: auto;
   object-fit: contain; /* maintain ratio */
 }
-
 </style>
-
-
 </head>
+
+
 <body>
-  <!-- TEMPAT LOGIN -->
-  <div id="loginSection"></div>
-
-  <!-- TEMPAT SEARCH ENGINE -->
-  <div id="searchSection" style="display:none">
-    <h3>Azura AI Search engine here</h3>
-  </div>
-
-
 <!-- Tambah hamburger dan share button tanpa ubah layout asal -->
 <button id="hamburgerBtn" style="
   position: fixed;
@@ -2336,16 +2326,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-//📌 kod panggil world id 
-function showSearchUI() {
-  document.getElementById("searchSection").style.display = "block";
-  document.getElementById("loginSection").style.display = "none";
-}
 </script>
-
-<!-- Kod login -->
-<script src="idkit.js"></script>
-<script src="worldid-login.js"></script>
-
 </body>
 </html>
