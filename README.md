@@ -243,14 +243,19 @@ const SEARCH_ENGINES = {
 5. Rujuk sumber asal di panel "Sources" untuk maklumat lanjut
 6. Guna ikon sidebar (☰) untuk:
    • Menu navigasi
+
    • Info pembangun
+ 
    • Share link
-   • Help & FAQ
+
+    • Help & FAQ
 
 ### 📱 Di Telefon Bimbit:
 
 • Buka di Chrome/Edge/Safari
+
 • Klik "Install App" atau "Add to Home Screen"
+
 • Guna seperti aplikasi native
 
 ---
