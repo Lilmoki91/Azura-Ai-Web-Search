@@ -1029,9 +1029,6 @@ document.getElementById('saveWldQrBtn').addEventListener('click', function() {
   </div>
 </header>
 
-<!--📌 Button popup World ID -->
-<button onclick="login()">Login dengan World ID</button>
-    
 <!--- kotak taip caraian ---->
 <main>
   <div id="searchContainer" class="search-container centered">
@@ -2327,36 +2324,7 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
+
 </script>
-
-<!--📌 login worldapps -->
-<script src="https://unpkg.com/@worldcoin/idkit@latest/dist/index.min.js"></script>
-<script>
-function login() {
-  const widget = new IDKitWidget({
-    app_id: "app_16b861659b5f66f3fc33d9d515a82f80",
-    action: "login",
-    onSuccess: (res) => sendToBackend(res),
-    onError: (err) => console.error(err)
-  });
-  widget.open();
-}
-
-function sendToBackend(data) {
-  // ← Ini fetch ke backend
-  fetch("/functions/verify.js", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(res => {
-    if(res.success) alert("✅ Login berjaya");
-    else alert("❌ Verify gagal");
-  })
-  .catch(err => console.error(err));
-}
-</script>
-
 </body>
 </html>
