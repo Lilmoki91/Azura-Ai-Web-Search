@@ -130,8 +130,8 @@ Anda boleh tambah atau ubah SEARCH_ENGINES dalam index.html.
 
 📸 Screenshot
 
-[https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/main/screenshot.png
-](https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-WebSearch.jpg)
+![Azura AI Web Search](https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-WebSearch.jpg)
+*Rajah 1: Antaramuka Azura AI Web Search*
 ---
 
 👨‍💻 Cara Guna
