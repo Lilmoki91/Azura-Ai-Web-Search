@@ -252,8 +252,33 @@ const SEARCH_ENGINES = {
 
 ## 📸 Tangkapan Skrin
 
-Halaman Utama Hasil Carian Mod Mudah Alih
-<img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-WebSearch.jpg" width="200"/> <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/screenshot.png" width="200"/> <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.webp" width="200"/>
+<p align="center">
+  <table>
+    <tr>
+      <td align="center" width="33%">
+        <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-WebSearch.jpg" width="200" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+        <br/>
+        <b>🏠 Halaman Utama</b>
+        <br/>
+        <sub>Antaramuka carian utama</sub>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/screenshot.png" width="200" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+        <br/>
+        <b>📊 Hasil Carian</b>
+        <br/>
+        <sub>Ringkasan AI + sumber</sub>
+      </td>
+      <td align="center" width="33%">
+        <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.webp" width="200" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+        <br/>
+        <b>📱 Mod Mudah Alih</b>
+        <br/>
+        <sub>PWA sedia install</sub>
+      </td>
+    </tr>
+  </table>
+</p>
 
 ---
 
