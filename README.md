@@ -283,7 +283,7 @@ const SEARCH_ENGINES = {
         <sub>Ringkasan AI + sumber</sub>
       </td>
       <td align="center" width="33%">
-        <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.webp" width="200" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+        <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/icon-512.png" width="200" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
         <br/>
         <b>📱 Mod Mudah Alih</b>
         <br/>
