@@ -1029,7 +1029,7 @@ document.getElementById('saveWldQrBtn').addEventListener('click', function() {
   </div>
 </header>
 
-<!--📌 login worldapps -->
+<!--📌 Button popup World ID -->
 <button onclick="login()">Login dengan World ID</button>
     
 <!--- kotak taip caraian ---->
@@ -2343,7 +2343,8 @@ function login() {
 }
 
 function sendToBackend(data) {
-  fetch("/verify.js", {  // relative path ke root verify.js
+  // ← Ini fetch ke backend
+  fetch("/functions/verify.js", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
