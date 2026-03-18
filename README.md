@@ -226,7 +226,7 @@ Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat
 <p align="left">
   <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/wld-acc.jpg" alt="WorldChain Wallet QR" width="250"/>
   <br>
-  <em>Scan QR code di atas untuk transaksi crypto</em>
+  <em>Scan QR code crypto to donation</em>
 </p>
 
 ---
