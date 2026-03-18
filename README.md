@@ -165,8 +165,11 @@ Azura AI menggunakan pendekatan keselamatan **3-lapisan** untuk melindungi API k
 ## 🚀 Mula Pantas
 
 ### 📋 Keperluan Asas
+
 • Pelayar web moden (Chrome, Firefox, Edge, Safari)
+
 • Text editor (VS Code, Sublime Text) - untuk ubahsuai
+
 • Git (optional)
 
 ### ⚙️ Cara Pasang (Lokal)
