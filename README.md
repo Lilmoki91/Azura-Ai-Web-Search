@@ -1,5 +1,9 @@
 # 🌐 Azura AI Web Search 🇲🇾
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-Wallpaper.png" alt="Azura AI WebSearch Banner" width="100%"/>
+</p>
+
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge&logo=cloudflare)](https://azura-ai-web-search.pages.dev)
 [![GitHub Repo](https://img.shields.io/badge/github-repo-blue?style=for-the-badge&logo=github)](https://github.com/Lilmoki91/Azura-Ai-Web-Search)
 [![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)](LICENSE)
