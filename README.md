@@ -192,14 +192,46 @@ Atas sumbangan dalam membangunkan teknologi AI untuk pendidikan Malaysia.
 
 ---
 
-☕ Derma/Sumbangan
+## ☕ Derma / Sumbangan
 
-Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat untuk menyokong:
+Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika berminat untuk menyokong, berikut adalah kaedah pembayaran yang tersedia:
 
-RHB Bank Malaysia
-No. Akaun: ```16207200095095```
+---
 
-Tiada paksaan, setiap sumbangan ikhlas amat dihargai. Semoga hidup anda diberkahi dan dimurahkan rezeki.
+### 🇲🇾 Touch 'n Go eWallet
+**No. Akaun:** `150979504703`
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/TNG-QR.jpg" alt="TNG eWallet QR" width="250"/>
+  <br>
+  <em>Scan QR code di atas untuk menderma</em>
+</p>
+
+---
+
+### 🏦 RHB Bank (Malaysia)
+**No. Akaun:** `16207200095095`
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/RHB-BANK-QR.jpg" alt="RHB Bank QR" width="250"/>
+  <br>
+  <em>Scan QR code di atas untuk menderma</em>
+</p>
+
+---
+
+### 🌐 WorldChain (Wallet)
+**Alamat Wallet:** `0x9e194F4d7eb5fa82BD26491e23D19f23e1AC4A28`
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/wld-acc.jpg" alt="WorldChain Wallet QR" width="250"/>
+  <br>
+  <em>Scan QR code di atas untuk transaksi crypto</em>
+</p>
+
+---
+
+> **Tiada paksaan**, setiap sumbangan ikhlas amat dihargai. Semoga hidup anda diberkahi dan dimurahkan rezeki. 🙏
 
 ---
 
