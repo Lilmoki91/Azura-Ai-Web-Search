@@ -412,7 +412,7 @@ Terima kasih khas kepada:
 **🇲🇾 Touch 'n Go eWallet**
 
 Butiran Nilai
-No. Akaun 150979504703
+No. Akaun: ```150979504703```
 Platform Touch 'n Go eWallet Malaysia
 
 <p align="center">
@@ -435,7 +435,7 @@ Cara Derma:
 **🏦 RHB Bank (Malaysia)**
 
 Butiran Nilai
-No. Akaun 16207200095095
+No. Akaun: ```16207200095095```
 Bank RHB Bank Berhad
 Negara Malaysia
 
@@ -459,7 +459,7 @@ Cara Derma:
 
 Butiran Nilai
 Network WorldChain
-Alamat Wallet 0x9e194F4d7eb5fa82BD26491e23D19f23e1AC4A28
+Alamat Wallet: ```0x9e194F4d7eb5fa82BD26491e23D19f23e1AC4A28```
 Mata Wang Crypto (Worldcoin, ETH, dll)
 
 <p align="center">
@@ -471,10 +471,10 @@ Mata Wang Crypto (Worldcoin, ETH, dll)
 Cara Derma:
 
 1. Buka wallet yang menyokong WorldChain network:
-   · World App
-   · MetaMask (tambah network manual)
-   · OKX Wallet
-   · Trust Wallet
+   • World App
+   • MetaMask (tambah network manual)
+   • OKX Wallet
+   • Trust Wallet
 2. Pastikan network ditetapkan ke WorldChain
 3. Scan QR code di atas ATAU paste alamat wallet:
    ```
@@ -535,7 +535,7 @@ of this software and associated documentation files...
 
 #### 📄 Baca Lesen Penuh
 
----
+
 
 <div align="center">
   <hr width="80%">
