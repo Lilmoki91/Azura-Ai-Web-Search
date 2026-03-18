@@ -637,6 +637,9 @@ footer::before {
 
 
 <body>
+<!-- login worldapps -->
+<button onclick="login()">Login dengan World ID</button>
+
 <!-- Tambah hamburger dan share button tanpa ubah layout asal -->
 <button id="hamburgerBtn" style="
   position: fixed;
@@ -2325,7 +2328,35 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
-
 </script>
+
+<!--📌 login worldapps -->
+<script src="https://unpkg.com/@worldcoin/idkit@latest/dist/index.min.js"></script>
+<script>
+function login() {
+  const widget = new IDKitWidget({
+    app_id: "app_16b861659b5f66f3fc33d9d515a82f80",
+    action: "login",
+    onSuccess: (res) => sendToBackend(res),
+    onError: (err) => console.error(err)
+  });
+  widget.open();
+}
+
+function sendToBackend(data) {
+  fetch("/verify.js", {  // relative path ke root verify.js
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if(res.success) alert("✅ Login berjaya");
+    else alert("❌ Verify gagal");
+  })
+  .catch(err => console.error(err));
+}
+</script>
+
 </body>
 </html>
