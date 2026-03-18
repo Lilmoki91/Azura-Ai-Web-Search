@@ -55,10 +55,15 @@
 Dibangunkan oleh **pelajar Malaysia berusia 16 tahun** sebagai projek pembelajaran dan sumbangan kepada komuniti teknologi tempatan.
 
 ### Teknologi Utama:
+
 • 🔍 **DuckDuckGo® API** - Enjin carian utama
+
 • 📚 **Wikipedia REST API** - Sumber kandungan pendidikan
+
 • 🧠 **Gemma-3-27B IT** - Model AI Google untuk ringkasan pintar
+
 • ☁️ **Cloudflare** - Hosting & proxy workers
+
 • 🔒 **IPFS + AES-GCM** - Penyimpanan API key yang selamat
 
 ---
