@@ -1,53 +1,73 @@
 // ==============================================
-// 🌐 AZURA AI - LOGIN TERUS (GUNA PAGE SAHAJA)
+// 🌐 AZURA AI - WORLD ID 4.0 (GUNA PAGES FUNCTIONS)
 // ==============================================
 
-const APP_ID = 'app_cd116c43c9c77dc06507317ac70aee8a';
 const ACTION = 'azura_login';
+const SIGNAL = 'azura-user-2026';
 
-// Simpan status login
-function saveWorldID(proof) {
-  console.log('✅ Proof diterima:', proof);
-  localStorage.setItem('world_verified', 'true');
-  localStorage.setItem('world_nullifier', proof.nullifier_hash);
-  
-  document.getElementById('searchSection').style.display = 'block';
-  document.getElementById('loginSection').style.display = 'none';
-  
-  alert('✅ Selamat datang ke Azura AI!');
-}
+async function loginWithWorldID() {
+  try {
+    console.log('🔐 Memulakan proses login...');
 
-// Fungsi utama login
-function loginWithWorldID() {
-  if (!window.IDKitWidget) {
-    alert('World ID SDK tidak sedia. Cuba refresh.');
-    return;
-  }
-  
-  new window.IDKitWidget({
-    app_id: APP_ID,
-    action: ACTION,
-    signal: 'azura-user',
-    onSuccess: saveWorldID,
-    onError: (error) => {
-      console.error('❌ Gagal:', error);
-      alert('Gagal login: ' + error.message);
+    // 1. Panggil Pages Functions untuk dapatkan signature
+    const rpSig = await fetch('/api/get-signature', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ action: ACTION })
+    }).then(r => r.json());
+
+    console.log('✅ Signature diterima:', rpSig);
+
+    // 2. Buat request ke IDKit (dari CDN)
+    const request = await window.IDKit.request({
+      app_id: 'app_cd116c43c9c77dc06507317ac70aee8a',
+      action: ACTION,
+      rp_context: {
+        rp_id: 'rp_6c9c3c8c18e611db',
+        nonce: rpSig.nonce,
+        created_at: rpSig.created_at,
+        expires_at: rpSig.expires_at,
+        signature: rpSig.sig,
+      },
+      allow_legacy_proofs: true,
+      environment: 'production'
+    }).preset(window.orbLegacy({ signal: SIGNAL }));
+
+    // 3. Dapatkan URL QR code
+    const connectUrl = request.connectorURI;
+    console.log('🔗 Connect URL:', connectUrl);
+
+    // 4. Buka popup atau tunjuk QR
+    window.open(connectUrl, '_blank');
+
+    // 5. Tunggu pengesahan
+    console.log('⏳ Menunggu pengesahan...');
+    const response = await request.pollUntilCompletion();
+    console.log('✅ World ID response:', response);
+
+    // 6. Hantar ke Pages Functions untuk verifikasi akhir
+    const verification = await fetch('/api/verify-proof', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ idkitResponse: response })
+    }).then(r => r.json());
+
+    if (verification.success || verification.ok) {
+      alert('✅ Selamat datang ke Azura AI!');
+      localStorage.setItem('world_verified', 'true');
+      document.getElementById('searchSection').style.display = 'block';
+      document.getElementById('loginSection').style.display = 'none';
+    } else {
+      throw new Error('Verifikasi gagal');
     }
-  }).open();
-}
 
-// Tunggu IDKit sedia sebelum tunjuk button
-function waitForIDKit(callback, retries = 25) {
-  if (window.IDKitWidget) {
-    callback();
-  } else if (retries > 0) {
-    setTimeout(() => waitForIDKit(callback, retries - 1), 200);
-  } else {
-    alert('World ID SDK tidak dapat dimuatkan. Cuba refresh.');
+  } catch (error) {
+    console.error('❌ Login error:', error);
+    alert('Gagal login: ' + error.message);
   }
 }
 
-// Papar butang login
+// Papar butang login (sama macam sebelum ni)
 function showLoginButton() {
   const container = document.createElement('div');
   container.id = 'login-container';
@@ -84,10 +104,7 @@ function showLoginButton() {
       cursor: pointer;
       font-weight: bold;
       width: 100%;
-      transition: transform 0.2s;
-    " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-      🔓 Login World ID
-    </button>
+    ">🔓 Login World ID</button>
   `;
   
   document.body.appendChild(container);
@@ -98,12 +115,9 @@ if (localStorage.getItem('world_verified') === 'true') {
   document.getElementById('searchSection').style.display = 'block';
   document.getElementById('loginSection').style.display = 'none';
 } else {
-  // Tunggu IDKit siap dulu, baru tunjuk button
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      waitForIDKit(showLoginButton);
-    });
+    document.addEventListener('DOMContentLoaded', showLoginButton);
   } else {
-    waitForIDKit(showLoginButton);
+    showLoginButton();
   }
 }
