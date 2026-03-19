@@ -8,7 +8,7 @@ export async function onRequest(context) {
 
   try {
     const { idkitResponse } = await request.json();
-    const rp_id = env.RP_ID; // Dari Pages Secret Variable
+    const rp_id = env.RP_ID;
 
     const response = await fetch(
       `https://developer.world.org/api/v4/verify/${rp_id}`,
