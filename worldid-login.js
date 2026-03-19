@@ -1,5 +1,5 @@
 // ==============================================
-// 🌐 AZURA AI - WORLD ID 4.0 (GUNA PAGES FUNCTIONS)
+// 🌐 AZURA AI - WORLD ID 4.0 (PAGES FUNCTIONS)
 // ==============================================
 
 const ACTION = 'azura_login';
@@ -9,7 +9,7 @@ async function loginWithWorldID() {
   try {
     console.log('🔐 Memulakan proses login...');
 
-    // 1. Panggil Pages Functions untuk dapatkan signature
+    // 1. Panggil Pages Functions untuk signature
     const rpSig = await fetch('/api/get-signature', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -18,7 +18,7 @@ async function loginWithWorldID() {
 
     console.log('✅ Signature diterima:', rpSig);
 
-    // 2. Buat request ke IDKit (dari CDN)
+    // 2. Buat request ke IDKit
     const request = await window.IDKit.request({
       app_id: 'app_cd116c43c9c77dc06507317ac70aee8a',
       action: ACTION,
@@ -33,19 +33,17 @@ async function loginWithWorldID() {
       environment: 'production'
     }).preset(window.orbLegacy({ signal: SIGNAL }));
 
-    // 3. Dapatkan URL QR code
+    // 3. Dapatkan URL QR
     const connectUrl = request.connectorURI;
     console.log('🔗 Connect URL:', connectUrl);
-
-    // 4. Buka popup atau tunjuk QR
     window.open(connectUrl, '_blank');
 
-    // 5. Tunggu pengesahan
+    // 4. Tunggu pengesahan
     console.log('⏳ Menunggu pengesahan...');
     const response = await request.pollUntilCompletion();
     console.log('✅ World ID response:', response);
 
-    // 6. Hantar ke Pages Functions untuk verifikasi akhir
+    // 5. Hantar ke Pages Functions untuk verifikasi akhir
     const verification = await fetch('/api/verify-proof', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
