@@ -37,7 +37,7 @@ function loginWithWorldID() {
 }
 
 // Tunggu IDKit sedia sebelum tunjuk button
-function waitForIDKit(callback, retries = 10) {
+function waitForIDKit(callback, retries = 25) {
   if (window.IDKitWidget) {
     callback();
   } else if (retries > 0) {
