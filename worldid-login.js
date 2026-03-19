@@ -36,6 +36,17 @@ function loginWithWorldID() {
   }).open();
 }
 
+// Tunggu IDKit sedia sebelum tunjuk button
+function waitForIDKit(callback, retries = 10) {
+  if (window.IDKitWidget) {
+    callback();
+  } else if (retries > 0) {
+    setTimeout(() => waitForIDKit(callback, retries - 1), 200);
+  } else {
+    alert('World ID SDK tidak dapat dimuatkan. Cuba refresh.');
+  }
+}
+
 // Papar butang login
 function showLoginButton() {
   const container = document.createElement('div');
@@ -87,10 +98,12 @@ if (localStorage.getItem('world_verified') === 'true') {
   document.getElementById('searchSection').style.display = 'block';
   document.getElementById('loginSection').style.display = 'none';
 } else {
-  // Tunggu IDKit siap
+  // Tunggu IDKit siap dulu, baru tunjuk button
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showLoginButton);
+    document.addEventListener('DOMContentLoaded', () => {
+      waitForIDKit(showLoginButton);
+    });
   } else {
-    showLoginButton();
+    waitForIDKit(showLoginButton);
   }
 }
