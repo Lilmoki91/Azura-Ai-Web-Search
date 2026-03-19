@@ -2328,10 +2328,14 @@ if ('serviceWorker' in navigator) {
 
 <!--📌📌📌 kod login world id -->
 <!-- Muat IDKit Core dari CDN -->
-<!-- CDN IDKit (letak dulu) -->
-<script src="https://unpkg.com/@worldcoin/idkit@1.4.1/dist/idkit.umd.min.js"></script>
+<script type="module">
+  import { IDKit, orbLegacy } from 'https://esm.sh/@worldcoin/idkit-core@4';
+  window.IDKit = IDKit;
+  window.orbLegacy = orbLegacy;
+  console.log('✅ IDKit Core 4.x sedia');
+</script>
 
-<!-- Kod login kita (tunggu CDN siap) -->
-<script src="./worldid-login.js" defer></script>
+<!-- Kod login kita -->
+<script src="./worldid-login.js"></script>
 </body>
 </html>
