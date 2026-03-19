@@ -2324,7 +2324,19 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
-
 </script>
+
+<!--📌📌📌 kod login world id -->
+<!-- Muat IDKit Core dari CDN -->
+<script type="module">
+  import { IDKit, orbLegacy } from 'https://esm.sh/@worldcoin/idkit-core@4';
+  window.IDKit = IDKit;
+  window.orbLegacy = orbLegacy;
+  console.log('✅ IDKit Core 4.x sedia');
+</script>
+
+<!-- Kod login kita -->
+<script src="./worldid-login.js"></script>   
+    
 </body>
 </html>
