@@ -12,10 +12,10 @@ export async function onRequest(context) {
     const { action } = await request.json();
     console.log('🔍 Action:', action);
     
-    const signingKey = env.RP_SIGNING_KEY; // 0xd284dd...
+    const signingKey = env.RP_SIGNING_KEY;
     console.log('🔑 Signing key exists:', !!signingKey);
 
-    // Generate signature guna Web Crypto
+    // Hasilkan signature (manual)
     const timestamp = Math.floor(Date.now() / 1000);
     const nonce = crypto.randomUUID();
     const message = `${action}:${nonce}:${timestamp}`;
