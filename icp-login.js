@@ -19,70 +19,93 @@ function loadAuthClient() {
 // Inisialisasi AuthClient
 async function initAuth() {
   if (authClient) return authClient;
-  if (typeof window.AuthClient === 'undefined') await loadAuthClient();
+  
+  // Tunggu AuthClient wujud
+  let retries = 0;
+  while (typeof window.AuthClient === 'undefined' && retries < 20) {
+    await new Promise(r => setTimeout(r, 200));
+    retries++;
+  }
+
+  if (typeof window.AuthClient === 'undefined') {
+    throw new Error('AuthClient gagal dimuat');
+  }
+
   authClient = await window.AuthClient.AuthClient.create();
   return authClient;
 }
 
 // Simpan status login
 function saveLogin(principal) {
+  console.log('✅ Principal ID:', principal);
   localStorage.setItem('ii_principal', principal);
   localStorage.setItem('world_verified', 'true');
   document.getElementById('searchSection').style.display = 'block';
   document.getElementById('loginSection').style.display = 'none';
-  alert('✅ Selamat datang!');
+  document.getElementById('login-container')?.remove();
+  alert('✅ Selamat datang ke Azura AI!');
 }
 
-// Login
+// Login dengan Internet Identity
 async function loginWithII() {
   try {
-    await initAuth();
+    console.log('🔐 Memulakan login...');
+    
+    if (!authClient) {
+      authClient = await initAuth();
+      if (!authClient) throw new Error('AuthClient gagal dimuat');
+    }
+    
     await authClient.login({
       identityProvider: II_URL,
       onSuccess: () => {
         const identity = authClient.getIdentity();
-        saveLogin(identity.getPrincipal().toString());
+        const principal = identity.getPrincipal().toString();
+        saveLogin(principal);
       },
-      onError: (error) => alert('Gagal login: ' + error)
+      onError: (error) => {
+        console.error('❌ Gagal login:', error);
+        alert('Gagal login: ' + (error || 'Unknown error'));
+      }
     });
+    
   } catch (error) {
-    alert('Error: ' + error.message);
+    console.error('❌ Login error:', error);
+    alert('Gagal login: ' + error.message);
   }
-}
-
-// Logout
-async function logoutII() {
-  await authClient?.logout();
-  localStorage.clear();
-  window.location.reload();
 }
 
 // Papar butang login
 function showLoginButton() {
-  const div = document.createElement('div');
-  div.innerHTML = `
-    <div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1f2e; padding:40px; border-radius:20px; border:2px solid #007AFF; text-align:center;">
-      <h2 style="color:white;">🌐 Azura AI</h2>
-      <p style="color:#94a3b8; margin:30px 0;">Login dengan Internet Identity</p>
-      <button onclick="loginWithII()" style="padding:15px 40px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:50px;">🔑 Login</button>
+  const container = document.createElement('div');
+  container.id = 'login-container';
+  container.innerHTML = `
+    <div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1f2e; padding:40px; border-radius:20px; border:2px solid #007AFF; text-align:center; max-width:400px; width:90%;">
+      <h2 style="color:white; font-size:28px; margin-bottom:20px;">🌐 <span style="color:#007AFF;">Azura AI</span></h2>
+      <p style="color:#94a3b8; margin-bottom:30px;">Login dengan Internet Identity</p>
+      <button id="login-btn" style="padding:15px 40px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:50px; cursor:pointer; font-weight:bold; width:100%;">🔑 Login</button>
     </div>
   `;
-  document.body.appendChild(div);
-  window.loginWithII = loginWithII;
+  document.body.appendChild(container);
+  document.getElementById('login-btn').addEventListener('click', loginWithII);
 }
 
 // Start
-(async () => {
+(async function() {
   try {
+    await loadAuthClient();
     await initAuth();
-    const authed = await authClient.isAuthenticated();
-    if (authed) {
+    
+    const isAuthed = await authClient.isAuthenticated();
+    if (isAuthed) {
       const identity = authClient.getIdentity();
-      saveLogin(identity.getPrincipal().toString());
+      const principal = identity.getPrincipal().toString();
+      saveLogin(principal);
     } else {
       showLoginButton();
     }
-  } catch {
+  } catch (error) {
+    console.error('❌ Init error:', error);
     showLoginButton();
   }
 })();
