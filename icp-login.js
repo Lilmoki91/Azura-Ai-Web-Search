@@ -5,15 +5,36 @@
 const II_URL = 'https://identity.ic0.app'; // Mainnet
 let authClient = null;
 
-// Muat AuthClient dari CDN
-function loadAuthClient() {
+// Fungsi muat script dari URL
+function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@dfinity/auth-client@1.0.1/dist/index.min.js';
+    script.src = src;
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
   });
+}
+
+// Muat AuthClient dari pelbagai CDN
+async function loadAuthClient() {
+  const urls = [
+    'https://cdn.jsdelivr.net/npm/@dfinity/auth-client@1.0.1/dist/index.min.js',
+    'https://unpkg.com/@dfinity/auth-client@1.0.1/dist/index.min.js',
+    'https://esm.sh/@dfinity/auth-client@1.0.1'
+  ];
+  
+  for (const url of urls) {
+    try {
+      await loadScript(url);
+      console.log('✅ AuthClient dimuat dari:', url);
+      return;
+    } catch (e) {
+      console.warn('❌ Gagal muat dari:', url);
+    }
+  }
+  
+  throw new Error('Semua CDN gagal');
 }
 
 // Inisialisasi AuthClient
