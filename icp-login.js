@@ -2,57 +2,15 @@
 // 🌐 AZURA AI - LOGIN INTERNET IDENTITY (ICP)
 // ==============================================
 
-const II_URL = 'https://identity.ic0.app'; // Mainnet
+import { AuthClient } from 'https://esm.sh/@dfinity/auth-client@1.0.1';
+
+const II_URL = 'https://identity.ic0.app';
 let authClient = null;
-
-// Fungsi muat script dari URL
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-}
-
-// Muat AuthClient dari pelbagai CDN
-async function loadAuthClient() {
-  const urls = [
-    'https://cdn.jsdelivr.net/npm/@dfinity/auth-client@1.0.1/dist/index.min.js',
-    'https://unpkg.com/@dfinity/auth-client@1.0.1/dist/index.min.js',
-    'https://esm.sh/@dfinity/auth-client@1.0.1'
-  ];
-  
-  for (const url of urls) {
-    try {
-      await loadScript(url);
-      console.log('✅ AuthClient dimuat dari:', url);
-      return;
-    } catch (e) {
-      console.warn('❌ Gagal muat dari:', url);
-    }
-  }
-  
-  throw new Error('Semua CDN gagal');
-}
 
 // Inisialisasi AuthClient
 async function initAuth() {
   if (authClient) return authClient;
-  
-  // Tunggu AuthClient wujud
-  let retries = 0;
-  while (typeof window.AuthClient === 'undefined' && retries < 20) {
-    await new Promise(r => setTimeout(r, 200));
-    retries++;
-  }
-
-  if (typeof window.AuthClient === 'undefined') {
-    throw new Error('AuthClient gagal dimuat');
-  }
-
-  authClient = await window.AuthClient.AuthClient.create();
+  authClient = await AuthClient.create();
   return authClient;
 }
 
@@ -71,11 +29,7 @@ function saveLogin(principal) {
 async function loginWithII() {
   try {
     console.log('🔐 Memulakan login...');
-    
-    if (!authClient) {
-      authClient = await initAuth();
-      if (!authClient) throw new Error('AuthClient gagal dimuat');
-    }
+    if (!authClient) await initAuth();
     
     await authClient.login({
       identityProvider: II_URL,
@@ -89,7 +43,6 @@ async function loginWithII() {
         alert('Gagal login: ' + (error || 'Unknown error'));
       }
     });
-    
   } catch (error) {
     console.error('❌ Login error:', error);
     alert('Gagal login: ' + error.message);
@@ -114,9 +67,7 @@ function showLoginButton() {
 // Start
 (async function() {
   try {
-    await loadAuthClient();
     await initAuth();
-    
     const isAuthed = await authClient.isAuthenticated();
     if (isAuthed) {
       const identity = authClient.getIdentity();
