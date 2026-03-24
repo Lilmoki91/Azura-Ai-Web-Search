@@ -598,7 +598,7 @@ SOFTWARE.
   </p>
 
   <p>
-    <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-LOGO.png" alt="Azura AI Logo" width="50"/>
+    <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-LOGO.png" alt="Azura AI Logo" width="80"/>
   </p>
 
   <p>
