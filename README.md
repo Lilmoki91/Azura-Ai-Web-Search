@@ -611,5 +611,5 @@ SOFTWARE.
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/Azura-Ai-Wallpaper.png" alt="Azura AI Web Search Banner" width="100%" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"/>
+  <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/johan%26Azura-Ai.png" alt="Azura AI Web Search Banner" width="100%" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"/>
 </p>
