@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "azura_search": {
+      "frontend": {
+        "entrypoint": "index.html"
+      },
+      "source": [
+        "index.html",
+        "manifest.json",
+        "sw.js",
+        "AZURA-AI.webp",
+        "AZURA-LOGO.png",
+        "TNG-QR.jpg",
+        "wld-acc.jpg"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "version": 1
+}
