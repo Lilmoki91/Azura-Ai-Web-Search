@@ -2341,26 +2341,30 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-async function aktifkanSistemPertahanan() {
-// 1. SEMAK STATUS MASA MULA-MULA BUKA
-window.addEventListener('DOMContentLoaded', (event) => {
+// 1. SEMAK STATUS AUTOMATIK (DUDUK LUAR FUNGSI)
+window.addEventListener('DOMContentLoaded', () => {
     const status = localStorage.getItem("azura_status");
     if (status === "MANUSIA_SAH") {
-        document.getElementById("skrin-kunci-world-id").style.display = "none";
-        document.getElementById("sistem-azura-sebenar").style.display = "block";
+        const lockScreen = document.getElementById("skrin-kunci-world-id");
+        const mainSystem = document.getElementById("sistem-azura-sebenar");
+        if(lockScreen) lockScreen.style.display = "none";
+        if(mainSystem) mainSystem.style.display = "block";
     }
 });
 
-// 2. FUNGSI TEKAN BUTANG VERIFY
+// 2. FUNGSI TEKAN BUTANG (HANYA SATU SAHAJA)
 async function aktifkanSistemPertahanan() {
+    console.log("Memulakan pengesahan World ID...");
+    
+    // Tunggu IDKit sedia (penting untuk J Prime)
     let count = 0;
-    while (typeof window.IDKit === 'undefined' && count < 100) {
-        await new Promise(resolve => setTimeout(resolve, 100)); 
+    while (typeof window.IDKit === 'undefined' && count < 50) {
+        await new Promise(resolve => setTimeout(resolve, 200)); 
         count++;
     }
 
     if (typeof window.IDKit === 'undefined') {
-        alert("Ralat: Enjin gagal dimuat. Sila semak internet.");
+        alert("Ralat: Enjin World ID gagal dimuat. Sila semak internet atau guna Chrome.");
         return;
     }
 
@@ -2374,18 +2378,19 @@ async function aktifkanSistemPertahanan() {
 
         if (result) {
             localStorage.setItem("azura_status", "MANUSIA_SAH");
-            alert("Akses Diberikan! Mengaktifkan Azura AI...");
+            alert("✅ AKSES DIBERIKAN! Selamat datang ke Azura AI.");
             
-            // Buka akses UI 3000 baris Johan
+            // Tukar skrin serta-merta
             document.getElementById("skrin-kunci-world-id").style.display = "none";
             document.getElementById("sistem-azura-sebenar").style.display = "block";
         }
     } catch (error) {
-        console.error("Gagal:", error);
+        console.error("Gagal Login:", error);
+        alert("Pengesahan gagal atau dibatalkan.");
     }
 }
-
 </script>
-</div>
+</div> 
 </body>
 </html>
+
