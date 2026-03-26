@@ -3,7 +3,7 @@
 <head>
 
 <!-- 📌login world id -->
-<script src="https://cdn.jsdelivr.net/npm/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js"></script>
 
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
@@ -2341,54 +2341,44 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-// 1. SEMAK STATUS AUTOMATIK (DUDUK LUAR FUNGSI)
-window.addEventListener('DOMContentLoaded', () => {
-    const status = localStorage.getItem("azura_status");
-    if (status === "MANUSIA_SAH") {
-        const lockScreen = document.getElementById("skrin-kunci-world-id");
-        const mainSystem = document.getElementById("sistem-azura-sebenar");
-        if(lockScreen) lockScreen.style.display = "none";
-        if(mainSystem) mainSystem.style.display = "block";
-    }
-});
-
-// 2. FUNGSI TEKAN BUTANG (HANYA SATU SAHAJA)
 async function aktifkanSistemPertahanan() {
-    console.log("Memulakan pengesahan World ID...");
-    
-    // Tunggu IDKit sedia (penting untuk J Prime)
-    let count = 0;
-    while (typeof window.IDKit === 'undefined' && count < 50) {
-        await new Promise(resolve => setTimeout(resolve, 200)); 
-        count++;
-    }
-
-    if (typeof window.IDKit === 'undefined') {
-        alert("Ralat: Enjin World ID gagal dimuat. Sila semak internet atau guna Chrome.");
-        return;
-    }
+    const lockScreen = document.getElementById("skrin-kunci-world-id");
+    const mainSystem = document.getElementById("sistem-azura-sebenar");
+    const statusText = document.querySelector("#skrin-kunci-world-id p");
 
     try {
-        const result = await window.IDKit.auth({
+        if (typeof IDKit === 'undefined') {
+            throw new Error("Library World ID belum siap.");
+        }
+
+        statusText.innerText = "Menghubungkan ke World App...";
+
+        const result = await IDKit.auth({
             app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
             action: "verify-human",
             signal: "user_login_azura",
-            verification_level: "device", 
+            verification_level: "device", // Pastikan ini sesuai dengan setting di Developer Portal
         });
 
         if (result) {
             localStorage.setItem("azura_status", "MANUSIA_SAH");
-            alert("✅ AKSES DIBERIKAN! Selamat datang ke Azura AI.");
             
-            // Tukar skrin serta-merta
-            document.getElementById("skrin-kunci-world-id").style.display = "none";
-            document.getElementById("sistem-azura-sebenar").style.display = "block";
+            // Transisi UI yang lebih bersih
+            lockScreen.style.opacity = "0";
+            setTimeout(() => {
+                lockScreen.style.display = "none";
+                mainSystem.style.display = "block";
+            }, 500);
+            
+            alert("✅ Akses Diterima.");
         }
     } catch (error) {
-        console.error("Gagal Login:", error);
-        alert("Pengesahan gagal atau dibatalkan.");
+        console.error("IDKit Error:", error);
+        statusText.style.color = "#ff3333";
+        statusText.innerText = "Gagal: " + (error.message || "Verifikasi Dibatalkan");
     }
 }
+
 </script>
 </div> 
 </body>
