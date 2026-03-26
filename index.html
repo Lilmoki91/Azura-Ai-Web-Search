@@ -2,6 +2,9 @@
 <html lang="ms">
 <head>
 
+<!-- 📌login world id -->
+<script src="https://unpkg.com/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js" defer></script>
+
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0066ff">
@@ -2327,34 +2330,48 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     window.location.reload();
   });
-}
-</script>
+    
 
-<!--📌 login world id -->
-<script src="https://unpkg.com/@worldcoin/idkit-standalone/dist/index.global.js"></script>
+// 📌 login world id 
 
-<script>
 async function aktifkanSistemPertahanan() {
-  console.log("Sistem cuba diaktifkan...");
-  
-  if (typeof IDKit === 'undefined') {
-    alert("Buku Ajaib (IDKit) gagal dimuat. Sila buka guna Chrome Browser biasa.");
-    return;
-  }
+    console.log("Memulakan pengesahan martabat...");
 
-  try {
-    const result = await IDKit.auth({
-      app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-      action: "verify-human",
-      signal: "user_login_azura",
-    });
-    // ... sambungan kod Johan yang lain ...
-    alert("Berjaya!");
-  } catch (e) {
-    console.error(e);
-  }
+    // Teknik Menunggu: Cuba cari IDKit selama 5 saat
+    let count = 0;
+    while (typeof window.IDKit === 'undefined' && count < 50) {
+        await new Promise(resolve => setTimeout(resolve, 100)); // Tunggu 100ms
+        count++;
+    }
+
+    if (typeof window.IDKit === 'undefined') {
+        alert("Sistem World ID mengambil masa terlalu lama untuk dimuatkan. Sila semak sambungan internet atau refresh laman web.");
+        return;
+    }
+
+    try {
+        // Guna window.IDKit untuk pastikan dia panggil dari global scope
+        const result = await window.IDKit.auth({
+            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
+            action: "verify-human",
+            signal: "user_login_azura",
+            verification_level: "device", 
+        });
+
+        if (result) {
+            localStorage.setItem("azura_status", "MANUSIA_SAH");
+            alert("Martabat Disahkan! Selamat datang.");
+            location.reload(); // Refresh untuk buka akses
+        }
+    } catch (error) {
+        console.error("Gagal:", error);
+        // Jika user tutup pop-up, jangan bagi alert pening
+        if (error.code !== 'user_rejected') {
+            alert("Sistem mengesan gangguan. Sila cuba lagi.");
+        }
+    }
 }
-</script>
 
+</script>
 </body>
 </html>
