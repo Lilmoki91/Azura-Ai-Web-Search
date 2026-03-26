@@ -3,7 +3,7 @@
 <head>
 
 <!-- 📌login world id -->
-<script src="https://cdn.jsdelivr.net/npm/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js"></script>
+<script src="https://unpkg.com/@worldcoin/idkit-standalone/build/index.global.js"></script>
 
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
@@ -2356,36 +2356,48 @@ window.addEventListener('load', function() {
 
     // 2. FUNGSI VERIFIKASI (Hanya jalan bila butang ditekan)
     window.aktifkanSistemPertahanan = function() {
-        if (typeof IDKit === 'undefined') {
-            alert("Library World ID sedang dimuat turun... Sila tunggu 5 saat.");
+        // Semak jika library gagal dimuat turun
+        if (!window.IDKit) {
+            alert("Library World ID tidak dijumpai. Pastikan ada sambungan internet.");
             return;
         }
 
         statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
         statusInfo.style.color = "cyan";
 
-        IDKit.auth({
-            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-            action: "verify-human",
-            signal: "user_login_azura",
-            verification_level: "device", // 'device' paling stabil untuk peranti 2015
-        }).then(function(result) {
-            if (result) {
-                localStorage.setItem("azura_status", "SAH");
-                skrinKunci.style.display = "none";
-                sistemAzura.style.display = "block";
-                alert("Akses Diterima! Selamat Datang.");
-            }
-        }).catch(function(error) {
-            console.error("Ralat:", error);
-            statusInfo.innerText = "Ralat: " + (error.message || "Sila cuba lagi");
+        try {
+            // Setup dan Initialize Modal World ID
+            IDKit.init({
+                app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
+                action: "verify-human",
+                signal: "user_login_azura",
+                verification_level: "device", // 'device' sahkan ada phone & World App
+                onSuccess: function(result) {
+                    // Dipanggil bila user berjaya verify dalam app
+                    console.log("Berjaya:", result);
+                    localStorage.setItem("azura_status", "SAH");
+                    skrinKunci.style.display = "none";
+                    sistemAzura.style.display = "block";
+                    alert("Akses Diterima! Selamat Datang Manusia Berdaulat.");
+                },
+                onError: function(error) {
+                    // Jika terbatal atau error
+                    console.error("Ralat World ID:", error);
+                    statusInfo.innerText = "Proses dibatalkan atau ralat berlaku.";
+                    statusInfo.style.color = "#ff4444";
+                }
+            });
+
+            // Buka Modal!
+            IDKit.open();
+
+        } catch (err) {
+            console.error("Kesilapan Sistem:", err);
+            statusInfo.innerText = "Ralat melancarkan IDKit.";
             statusInfo.style.color = "#ff4444";
-        });
+        }
     };
 });
-
-
-
 
 </script>
 </div> 
