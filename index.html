@@ -3,7 +3,7 @@
 <head>
 
 <!-- 📌login world id -->
-<script src="https://unpkg.com/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@worldcoin/idkit-standalone@1.3.0/dist/index.global.js" defer></script>
 
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
@@ -640,6 +640,17 @@ footer::before {
 
 
 <body>
+<!--📌 login world id -->
+<div id="skrin-kunci-world-id" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #000; z-index: 9999; position: fixed; width: 100%; top: 0; left: 0;">
+    <h1 style="color: #ff3333;">🎀 AKSES DISEKAT 🎀</h1>
+    <p style="color: white;">Sila sahkan anda manusia berdaulat.</p>
+    <button onclick="aktifkanSistemPertahanan()" style="padding: 15px 30px; font-size: 18px; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        🛡️ SAHKAN IDENTITI WORLD ID
+    </button>
+</div>
+<div id="sistem-azura-sebenar" style="display: none;">
+
+    
 <!-- Tambah hamburger dan share button tanpa ubah layout asal -->
 <button id="hamburgerBtn" style="
   position: fixed;
@@ -1062,14 +1073,6 @@ document.getElementById('saveWldQrBtn').addEventListener('click', function() {
        &copy; Azura AI Master of Ribbons EDUCATIONAL 2026 &trade;
     </span>
     </div>
-
-<!--📌 butang login world id -->      
-<button 
-    onclick="aktifkanSistemPertahanan()" 
-    style="padding: 15px 30px; font-size: 18px; cursor: pointer; background: #0088ff; color: white; border: none; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-    🛡️ SAHKAN IDENTITI WORLD ID
-</button>
-
 
 <!-- LETAKKAN BUTANG DI SINI SEKARANG -->
 <button id="reloadBtn" class="reload-btn" title="Reload/New Search"><svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"""/></path></svg>
@@ -2338,24 +2341,30 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-
 async function aktifkanSistemPertahanan() {
-    console.log("Memulakan pengesahan martabat...");
+// 1. SEMAK STATUS MASA MULA-MULA BUKA
+window.addEventListener('DOMContentLoaded', (event) => {
+    const status = localStorage.getItem("azura_status");
+    if (status === "MANUSIA_SAH") {
+        document.getElementById("skrin-kunci-world-id").style.display = "none";
+        document.getElementById("sistem-azura-sebenar").style.display = "block";
+    }
+});
 
-    // Teknik Menunggu: Cuba cari IDKit selama 5 saat
+// 2. FUNGSI TEKAN BUTANG VERIFY
+async function aktifkanSistemPertahanan() {
     let count = 0;
-    while (typeof window.IDKit === 'undefined' && count < 50) {
-        await new Promise(resolve => setTimeout(resolve, 100)); // Tunggu 100ms
+    while (typeof window.IDKit === 'undefined' && count < 100) {
+        await new Promise(resolve => setTimeout(resolve, 100)); 
         count++;
     }
 
     if (typeof window.IDKit === 'undefined') {
-        alert("Sistem World ID mengambil masa terlalu lama untuk dimuatkan. Sila semak sambungan internet atau refresh laman web.");
+        alert("Ralat: Enjin gagal dimuat. Sila semak internet.");
         return;
     }
 
     try {
-        // Guna window.IDKit untuk pastikan dia panggil dari global scope
         const result = await window.IDKit.auth({
             app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
             action: "verify-human",
@@ -2365,18 +2374,18 @@ async function aktifkanSistemPertahanan() {
 
         if (result) {
             localStorage.setItem("azura_status", "MANUSIA_SAH");
-            alert("Martabat Disahkan! Selamat datang.");
-            location.reload(); // Refresh untuk buka akses
+            alert("Akses Diberikan! Mengaktifkan Azura AI...");
+            
+            // Buka akses UI 3000 baris Johan
+            document.getElementById("skrin-kunci-world-id").style.display = "none";
+            document.getElementById("sistem-azura-sebenar").style.display = "block";
         }
     } catch (error) {
         console.error("Gagal:", error);
-        // Jika user tutup pop-up, jangan bagi alert pening
-        if (error.code !== 'user_rejected') {
-            alert("Sistem mengesan gangguan. Sila cuba lagi.");
-        }
     }
 }
 
 </script>
+</div>
 </body>
 </html>
