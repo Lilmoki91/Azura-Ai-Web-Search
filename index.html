@@ -2341,44 +2341,49 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-// Guna window.onload supaya skrip tunggu SEMUA library masuk ke RAM
-    window.onload = function() {
-        var skrinKunci = document.getElementById("skrin-kunci-world-id");
-        var sistemAzura = document.getElementById("sistem-azura-sebenar");
-        var statusInfo = document.querySelector("#skrin-kunci-world-id p");
+// 📌 GABUNGAN SISTEM KESELAMATAN & AUTO-UNLOCK
+window.addEventListener('load', function() {
+    var skrinKunci = document.getElementById("skrin-kunci-world-id");
+    var sistemAzura = document.getElementById("sistem-azura-sebenar");
+    var statusInfo = document.querySelector("#skrin-kunci-world-id p");
 
-        console.log("Sistem sedia. Menyemak IDKit...");
+    // 1. SEMAK STATUS LAMA (Jimat RAM & Masa)
+    if (localStorage.getItem("azura_status") === "SAH") {
+        skrinKunci.style.display = "none";
+        sistemAzura.style.display = "block";
+        console.log("🔓 Akses sedia ada dikesan.");
+    }
 
-        // Fungsi utama verifikasi
-        window.aktifkanSistemPertahanan = function() {
-            if (typeof IDKit === 'undefined') {
-                alert("Library belum siap. Sila tunggu sekejap atau refresh.");
-                return;
+    // 2. FUNGSI VERIFIKASI (Hanya jalan bila butang ditekan)
+    window.aktifkanSistemPertahanan = function() {
+        if (typeof IDKit === 'undefined') {
+            alert("Library World ID sedang dimuat turun... Sila tunggu 5 saat.");
+            return;
+        }
+
+        statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
+        statusInfo.style.color = "cyan";
+
+        IDKit.auth({
+            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
+            action: "verify-human",
+            signal: "user_login_azura",
+            verification_level: "device", // 'device' paling stabil untuk peranti 2015
+        }).then(function(result) {
+            if (result) {
+                localStorage.setItem("azura_status", "SAH");
+                skrinKunci.style.display = "none";
+                sistemAzura.style.display = "block";
+                alert("Akses Diterima! Selamat Datang.");
             }
-
-            statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
-
-            IDKit.auth({
-                app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-                action: "verify-human",
-                signal: "user_login_azura",
-                verification_level: "device",
-            }).then(function(result) {
-                if (result) {
-                    localStorage.setItem("azura_status", "SAH");
-                    
-                    // Gunakan transisi gaya lama untuk jimat RAM
-                    skrinKunci.style.display = "none";
-                    sistemAzura.style.display = "block";
-                    alert("Akses Diterima.");
-                }
-            }).catch(function(error) {
-                console.error(error);
-                statusInfo.innerText = "Ralat: " + (error.message || "Verifikasi gagal");
-                statusInfo.style.color = "red";
-            });
-        };
+        }).catch(function(error) {
+            console.error("Ralat:", error);
+            statusInfo.innerText = "Ralat: " + (error.message || "Sila cuba lagi");
+            statusInfo.style.color = "#ff4444";
+        });
     };
+});
+
 
 
 
