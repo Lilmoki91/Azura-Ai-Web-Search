@@ -2341,43 +2341,46 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-async function aktifkanSistemPertahanan() {
-    const lockScreen = document.getElementById("skrin-kunci-world-id");
-    const mainSystem = document.getElementById("sistem-azura-sebenar");
-    const statusText = document.querySelector("#skrin-kunci-world-id p");
+// Guna window.onload supaya skrip tunggu SEMUA library masuk ke RAM
+    window.onload = function() {
+        var skrinKunci = document.getElementById("skrin-kunci-world-id");
+        var sistemAzura = document.getElementById("sistem-azura-sebenar");
+        var statusInfo = document.querySelector("#skrin-kunci-world-id p");
 
-    try {
-        if (typeof IDKit === 'undefined') {
-            throw new Error("Library World ID belum siap.");
-        }
+        console.log("Sistem sedia. Menyemak IDKit...");
 
-        statusText.innerText = "Menghubungkan ke World App...";
+        // Fungsi utama verifikasi
+        window.aktifkanSistemPertahanan = function() {
+            if (typeof IDKit === 'undefined') {
+                alert("Library belum siap. Sila tunggu sekejap atau refresh.");
+                return;
+            }
 
-        const result = await IDKit.auth({
-            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-            action: "verify-human",
-            signal: "user_login_azura",
-            verification_level: "device", // Pastikan ini sesuai dengan setting di Developer Portal
-        });
+            statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
 
-        if (result) {
-            localStorage.setItem("azura_status", "MANUSIA_SAH");
-            
-            // Transisi UI yang lebih bersih
-            lockScreen.style.opacity = "0";
-            setTimeout(() => {
-                lockScreen.style.display = "none";
-                mainSystem.style.display = "block";
-            }, 500);
-            
-            alert("✅ Akses Diterima.");
-        }
-    } catch (error) {
-        console.error("IDKit Error:", error);
-        statusText.style.color = "#ff3333";
-        statusText.innerText = "Gagal: " + (error.message || "Verifikasi Dibatalkan");
-    }
-}
+            IDKit.auth({
+                app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
+                action: "verify-human",
+                signal: "user_login_azura",
+                verification_level: "device",
+            }).then(function(result) {
+                if (result) {
+                    localStorage.setItem("azura_status", "SAH");
+                    
+                    // Gunakan transisi gaya lama untuk jimat RAM
+                    skrinKunci.style.display = "none";
+                    sistemAzura.style.display = "block";
+                    alert("Akses Diterima.");
+                }
+            }).catch(function(error) {
+                console.error(error);
+                statusInfo.innerText = "Ralat: " + (error.message || "Verifikasi gagal");
+                statusInfo.style.color = "red";
+            });
+        };
+    };
+
+
 
 </script>
 </div> 
