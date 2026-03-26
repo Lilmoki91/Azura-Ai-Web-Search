@@ -2352,28 +2352,19 @@ window.addEventListener('load', function() {
         skrinKunci.style.display = "none";
         sistemAzura.style.display = "block";
         console.log("🔓 Akses sedia ada dikesan.");
+        return; // Hentikan fungsi di sini kalau dah sah
     }
 
-    // 2. FUNGSI VERIFIKASI (Hanya jalan bila butang ditekan)
-    window.aktifkanSistemPertahanan = function() {
-        // Semak jika library gagal dimuat turun
-        if (!window.IDKit) {
-            alert("Library World ID tidak dijumpai. Pastikan ada sambungan internet.");
-            return;
-        }
-
-        statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
-        statusInfo.style.color = "cyan";
-
+    // 2. INITIALIZE IDKIT AWAL-AWAL (Elak sangkut masa tekan butang)
+    if (window.IDKit) {
         try {
-            // Setup dan Initialize Modal World ID
             IDKit.init({
                 app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-                action: "verify-human",
+                RP_ID: "rp_6c9c3c8c18e611db",
+                action: "verify-human", // PASTIKAN ACTION INI TEPAT DENGAN DALAM PORTAL KAU
                 signal: "user_login_azura",
-                verification_level: "device", // 'device' sahkan ada phone & World App
+                verification_level: "device",
                 onSuccess: function(result) {
-                    // Dipanggil bila user berjaya verify dalam app
                     console.log("Berjaya:", result);
                     localStorage.setItem("azura_status", "SAH");
                     skrinKunci.style.display = "none";
@@ -2381,23 +2372,40 @@ window.addEventListener('load', function() {
                     alert("Akses Diterima! Selamat Datang Manusia Berdaulat.");
                 },
                 onError: function(error) {
-                    // Jika terbatal atau error
                     console.error("Ralat World ID:", error);
-                    statusInfo.innerText = "Proses dibatalkan atau ralat berlaku.";
+                    statusInfo.innerText = "Ralat: Sambungan ke World App terganggu.";
                     statusInfo.style.color = "#ff4444";
                 }
             });
-
-            // Buka Modal!
-            IDKit.open();
-
         } catch (err) {
-            console.error("Kesilapan Sistem:", err);
-            statusInfo.innerText = "Ralat melancarkan IDKit.";
+            console.error("Gagal init IDKit:", err);
+        }
+    } else {
+        console.warn("Library IDKit tiada. Semak sambungan internet.");
+    }
+
+    // 3. FUNGSI VERIFIKASI (Hanya tembak buka modal bila butang ditekan)
+    window.aktifkanSistemPertahanan = function() {
+        if (!window.IDKit) {
+            alert("Library World ID tidak dijumpai. Pastikan ada sambungan internet dan refresh.");
+            return;
+        }
+
+        statusInfo.innerText = "Sila sahkan diri anda melalui World App...";
+        statusInfo.style.color = "cyan";
+
+        try {
+            // Modal dah di-init di atas, sekarang kita cuma buka
+            IDKit.open();
+        } catch (err) {
+            console.error("Kesilapan Sistem IDKit:", err);
+            statusInfo.innerText = "Ralat melancarkan antaramuka IDKit.";
             statusInfo.style.color = "#ff4444";
         }
     };
 });
+
+
 
 </script>
 </div> 
