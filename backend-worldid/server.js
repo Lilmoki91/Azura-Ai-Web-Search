@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { signRequest } from '@worldcoin/idkit-core/signing';
+import { signRequest } from '@worldcoin/idkit-core/signing';  // ✅ BETUL
 
 const app = express();
 app.use(cors());
@@ -20,7 +20,7 @@ app.post('/api/rp-signature', (req, res) => {
   }
 });
 
-// Step 5: Verify proof — forward as-is
+// Step 5: Verify proof
 app.post('/api/verify-proof', async (req, res) => {
   try {
     const { idkitResponse } = req.body;
