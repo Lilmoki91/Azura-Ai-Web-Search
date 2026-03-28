@@ -2341,9 +2341,12 @@ if ('serviceWorker' in navigator) {
     
 
 // 📌 login world id 
-// ============================================
+ // ============================================
 // 📌 WORLD ID 4.x INTEGRATION (idkit-core)
 // ============================================
+
+// ✅ TAMBAH BARIS INI DI ATAS (selepas window.addEventListener)
+const BACKEND_URL = 'https://azura-worldid-backend.onrender.com'; // Ganti dengan URL Render sebenar
 
 window.addEventListener('load', async function() {
     const skrinKunci = document.getElementById("skrin-kunci-world-id");
@@ -2363,8 +2366,8 @@ window.addEventListener('load', async function() {
             statusInfo.innerText = "Mendapatkan RP signature...";
             statusInfo.style.color = "cyan";
 
-            // LANGKAH 1: Dapatkan RP signature dari backend ANDA
-            const rpSig = await fetch("/api/rp-signature", {
+            // ✅ LANGKAH 1: GANTI "/api/rp-signature" dengan URL penuh
+            const rpSig = await fetch(`${BACKEND_URL}/api/rp-signature`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({ action: "verify-human" }),
@@ -2372,10 +2375,10 @@ window.addEventListener('load', async function() {
 
             // LANGKAH 2: Buat IDKit request dengan RP context
             const request = await IDKit.request({
-                app_id: "app_cd116c43c9c77dc06507317ac70aee8a", // app_id anda
+                app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
                 action: "verify-human",
                 rp_context: {
-                    rp_id: "rp_6c9c3c8c18e611db", // rp_id anda
+                    rp_id: "rp_6c9c3c8c18e611db",
                     nonce: rpSig.nonce,
                     created_at: rpSig.created_at,
                     expires_at: rpSig.expires_at,
@@ -2385,7 +2388,7 @@ window.addEventListener('load', async function() {
                 environment: "production",
             }).preset(deviceLegacy({ signal: "user_login_azura" }));
 
-            // LANGKAH 3: Papar QR code untuk pengguna scan
+            // LANGKAH 3: Papar QR code
             const connectUrl = request.connectorURI;
             const qrContainer = document.getElementById("qr-container");
             qrContainer.innerHTML = `
@@ -2397,9 +2400,9 @@ window.addEventListener('load', async function() {
             // LANGKAH 4: Tunggu pengguna selesai verify
             const response = await request.pollUntilCompletion();
 
-            // LANGKAH 5: Hantar proof ke backend untuk pengesahan
+            // ✅ LANGKAH 5: GANTI "/api/verify-proof" dengan URL penuh
             statusInfo.innerText = "Mengesahkan proof...";
-            const verifyResult = await fetch("/api/verify-proof", {
+            const verifyResult = await fetch(`${BACKEND_URL}/api/verify-proof`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
