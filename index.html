@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-
-<!-- 📌login world id -->
-<script src="https://unpkg.com/@worldcoin/idkit-core@4.0.0/build/index.global.js"></script>
-
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0066ff">
@@ -640,19 +636,6 @@ footer::before {
 
 
 <body>
-<!--📌 login world id -->
-<!-- Skrin kunci -->
-<div id="skrin-kunci-world-id" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#000; position:fixed; width:100%; top:0; left:0; z-index:9999;">
-    <h1 style="color:#ff3333;">🎀 AKSES DISEKAT 🎀</h1>
-    <p id="statusVerify" style="color:white;">Sila sahkan anda manusia</p>
-    <button onclick="aktifkanSistemPertahanan()" style="padding:15px 30px; font-size:18px; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer;">
-        🛡️ SAHKAN IDENTITI WORLD ID
-    </button>
-    <div id="qr-container" style="margin-top:20px;"></div>
-</div>
-
-<div id="sistem-azura-sebenar" style="display:none;">
-    
 <!-- Tambah hamburger dan share button tanpa ubah layout asal -->
 <button id="hamburgerBtn" style="
   position: fixed;
@@ -2340,96 +2323,6 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
-    
-
-// 📌 login world id 
-// ============================================
-// 📌 WORLD ID 4.x INTEGRATION (idkit-core)
-// ============================================
-
-const BACKEND_URL = 'https://azura-ai-web-search.onrender.com';
-
-// Access from global build
-const { IDKit, orbLegacy } = window.IDKitCore || window;
-
-window.aktifkanSistemPertahanan = async function() {
-    const skrinKunci = document.getElementById("skrin-kunci-world-id");
-    const sistemAzura = document.getElementById("sistem-azura-sebenar");
-    const statusInfo = document.getElementById("statusVerify");
-
-    if (localStorage.getItem("azura_status") === "SAH") {
-        skrinKunci.style.display = "none";
-        sistemAzura.style.display = "block";
-        return;
-    }
-
-    try {
-        // STEP 3: Get RP signature from YOUR backend
-        statusInfo.innerText = "Mendapatkan RP signature...";
-        statusInfo.style.color = "cyan";
-
-        const rpSig = await fetch(`${BACKEND_URL}/api/rp-signature`, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ action: "verify-human" }),
-        }).then(r => r.json());
-
-        // STEP 4: Create IDKit request
-        const request = await IDKit.request({
-            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
-            action: "verify-human",
-            rp_context: {
-                rp_id: "rp_6c9c3c8c18e611db",
-                nonce: rpSig.nonce,
-                created_at: rpSig.created_at,
-                expires_at: rpSig.expires_at,
-                signature: rpSig.sig,
-            },
-            allow_legacy_proofs: true,
-            environment: "production",
-        }).preset(orbLegacy({ signal: "user_login_azura" }));
-
-        // Show QR code
-        const connectUrl = request.connectorURI;
-        document.getElementById("qr-container").innerHTML = `
-            <p style="color:white;">Scan QR dengan World App:</p>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(connectUrl)}" alt="QR">
-        `;
-        statusInfo.innerText = "Scan QR code dengan World App...";
-
-        // Poll until user completes
-        const response = await request.pollUntilCompletion({
-            pollInterval: 2000,
-            timeout: 120000,
-        });
-
-        // STEP 5: Verify proof on YOUR backend
-        statusInfo.innerText = "Mengesahkan proof...";
-        const verifyResult = await fetch(`${BACKEND_URL}/api/verify-proof`, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-                rp_id: "rp_6c9c3c8c18e611db",
-                idkitResponse: response,
-            }),
-        }).then(r => r.json());
-
-        if (verifyResult.success) {
-            localStorage.setItem("azura_status", "SAH");
-            skrinKunci.style.display = "none";
-            sistemAzura.style.display = "block";
-        } else {
-            throw new Error("Backend verification gagal");
-        }
-
-    } catch (err) {
-        console.error("Ralat World ID:", err);
-        statusInfo.innerText = "Ralat: " + err.message;
-        statusInfo.style.color = "#ff4444";
-    }
-};
-
 </script>
-</div> 
 </body>
 </html>
