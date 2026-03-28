@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { signRequest } from '@worldcoin/idkit/signing';
+import { signRequest } from '@worldcoin/idkit-core/signing';
 
 const app = express();
 app.use(cors());
@@ -9,8 +9,8 @@ app.use(express.json());
 const RP_SIGNING_KEY = process.env.RP_SIGNING_KEY;
 const RP_ID = process.env.RP_ID;
 
-// Endpoint 1: Dapatkan signature
-app.post('/api/rp-signature', async (req, res) => {
+// Step 3: RP Signature
+app.post('/api/rp-signature', (req, res) => {
   try {
     const { action } = req.body;
     const { sig, nonce, createdAt, expiresAt } = signRequest(action, RP_SIGNING_KEY);
@@ -20,15 +20,18 @@ app.post('/api/rp-signature', async (req, res) => {
   }
 });
 
-// Endpoint 2: Verify proof
+// Step 5: Verify proof — forward as-is
 app.post('/api/verify-proof', async (req, res) => {
   try {
     const { idkitResponse } = req.body;
-    const response = await fetch(`https://developer.world.org/api/v4/verify/${RP_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(idkitResponse)
-    });
+    const response = await fetch(
+      `https://developer.world.org/api/v4/verify/${RP_ID}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(idkitResponse),
+      }
+    );
     const result = await response.json();
     res.status(response.status).json(result);
   } catch (error) {
@@ -36,7 +39,6 @@ app.post('/api/verify-proof', async (req, res) => {
   }
 });
 
-// Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', rp_id: RP_ID });
 });
