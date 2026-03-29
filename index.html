@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
+<!-- world id login -->
+<script src="https://unpkg.com/@worldcoin/idkit-core"></script>
+
 <!-- pwa sistem -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0066ff">
@@ -743,6 +746,14 @@ footer::before {
           <i class="fab fa-telegram" style="margin-right: 10px; color: #0088cc;"></i>
           <span>Hubungi Developer</span>
         </a></div>
+
+<!-- world id login -->
+<div onclick="startWorldIDVerification()" 
+     style="padding: 10px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer;">
+    <i class="fas fa-camera" style="margin-right: 10px; color: #ffcc00;"></i>
+    <span>login (World ID)</span>
+</div>
+        
 
 <!-- Butang closed terminal -->
 <!-- verify platform terminal -->
@@ -2323,6 +2334,49 @@ if ('serviceWorker' in navigator) {
     window.location.reload();
   });
 }
+
+
+//📌📌📌 login world id
+async function startWorldIDVerification() {
+    closeMenu(); // Tutup sidebar dulu
+    
+    const { IDKit } = window.IDKitCore;
+
+    try {
+        // 1. Mula Verifikasi
+        const result = await IDKit.request({
+            app_id: "app_cd116c43c9c77dc06507317ac70aee8a",
+            action: "my-action",
+            environment: "production", // Tukar ke production sebab kamu ada World ID asli!
+        });
+
+        // Tunggu user scan QR di World App
+        const proof = await result.pollUntilCompletion();
+
+        // 2. Kirim data ke Codespace kamu
+        const backendUrl = "https://congenial-chainsaw-r4wrq656rvw6fpgj-3000.app.github.dev/verify";
+        
+        const response = await fetch(backendUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idkitResponse: proof }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert("✅ Tahniah! Azura AI sahkan kamu adalah manusia unik.");
+            // Kamu boleh simpan status 'verified' di localStorage sini
+            localStorage.setItem('azura_verified', 'true');
+        } else {
+            alert("❌ Verifikasi gagal: " + data.detail);
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Terjadi ralat semasa verifikasi. Pastikan Server Codespace sedang 'ON' dan 'Public'.");
+    }
+}
+
 </script>
 </body>
 </html>
