@@ -79,7 +79,7 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
         return fetch(event.request).then(response => {
-          // Cache untuk下次
+          // Cache untuk lanjutan
           if (response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then(cache => {
