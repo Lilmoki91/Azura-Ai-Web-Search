@@ -2508,54 +2508,60 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-//📌 kod open terminal verification 
-//📌 ZORD TERMINAL
-    function openTerminalVerification() {
-        closeMenu();
-        setTimeout(() => window.location.href = 'terminal-verification.html', 200);
-    }
+// ==============================================
+// 📌 ZORD TERMINAL - FUNGSI GLOBAL
+// ==============================================
 
-    (function() {
-        function openHamburgerMenu() {
-            const sidebar = document.getElementById('sidebarMenu');
-            const overlay = document.getElementById('menuOverlay');
+// Fungsi buka menu (GLOBAL)
+function openHamburgerMenu() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    
+    if (sidebar && overlay) {
+        sidebar.style.left = '0';
+        overlay.style.display = 'block';
+        console.log('✅ Menu opened');
+    }
+}
+
+// Fungsi tutup menu (GLOBAL)
+function closeMenu() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    
+    if (sidebar && overlay) {
+        sidebar.style.left = '-250px';
+        overlay.style.display = 'none';
+        console.log('✅ Menu closed');
+    }
+}
+
+// Fungsi buka terminal verification
+function openTerminalVerification() {
+    closeMenu(); // ← SEKARANG BOLEH AKSES KERANA GLOBAL
+    setTimeout(() => {
+        window.location.href = 'terminal-verification.html';
+    }, 200);
+}
+
+// ==============================================
+// AUTO-BUKA MENU BILA KEMBALI DARI TERMINAL
+// ==============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('menu') === 'open') {
+        setTimeout(() => {
+            openHamburgerMenu();
             
-            if (sidebar && overlay) {
-                sidebar.style.left = '0';
-                overlay.style.display = 'block';
-                console.log('✅ Menu auto-opened from terminal');
+            // Bersihkan URL
+            if (window.history.replaceState) {
+                const cleanUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, cleanUrl);
             }
-        }
-  
-// 📌 SYSTEM CLOSED HUMBURGER BUTTON MENU
-        function closeHamburgerMenu() {
-            const sidebar = document.getElementById('sidebarMenu');
-            const overlay = document.getElementById('menuOverlay');
-            
-            if (sidebar && overlay) {
-                sidebar.style.left = '-250px';
-                overlay.style.display = 'none';
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            if (urlParams.get('menu') === 'open') {
-                setTimeout(() => {
-                    openHamburgerMenu();
-                    
-                    if (window.history.replaceState) {
-                        const cleanUrl = window.location.pathname + window.location.hash;
-                        window.history.replaceState({}, document.title, cleanUrl);
-                    }
-                }, 300);
-            }
-            
-            window.openAzuraMenu = openHamburgerMenu;
-            window.closeAzuraMenu = closeHamburgerMenu;
-        });
-    })();
+        }, 500); // Delay untuk pastikan DOM & sidebar sedia
+    }
+});
 
 
 // ==============================================
