@@ -2509,20 +2509,8 @@ if ('serviceWorker' in navigator) {
 }
 
 // ==============================================
-// 📌 ZORD TERMINAL - FUNGSI GLOBAL
+// 📌 ZORD TERMINAL - FUNGSI GLOBAL (LUAR IIFE)
 // ==============================================
-
-// Fungsi buka menu (GLOBAL)
-function openHamburgerMenu() {
-    const sidebar = document.getElementById('sidebarMenu');
-    const overlay = document.getElementById('menuOverlay');
-    
-    if (sidebar && overlay) {
-        sidebar.style.left = '0';
-        overlay.style.display = 'block';
-        console.log('✅ Menu opened');
-    }
-}
 
 // Fungsi tutup menu (GLOBAL)
 function closeMenu() {
@@ -2536,10 +2524,23 @@ function closeMenu() {
     }
 }
 
+// Fungsi buka menu (GLOBAL)
+function openHamburgerMenu() {
+    const sidebar = document.getElementById('sidebarMenu');
+    const overlay = document.getElementById('menuOverlay');
+    
+    if (sidebar && overlay) {
+        sidebar.style.left = '0';
+        overlay.style.display = 'block';
+        console.log('✅ Menu opened');
+    }
+}
+
 // Fungsi buka terminal verification
 function openTerminalVerification() {
-    closeMenu(); // ← SEKARANG BOLEH AKSES KERANA GLOBAL
-    setTimeout(() => {
+    console.log('🟢 openTerminalVerification dipanggil!');
+    closeMenu(); // Tutup sidebar dulu
+    setTimeout(function() {
         window.location.href = 'terminal-verification.html';
     }, 200);
 }
@@ -2551,7 +2552,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     
     if (urlParams.get('menu') === 'open') {
-        setTimeout(() => {
+        console.log('🟢 Parameter menu=open dikesan!');
+        setTimeout(function() {
             openHamburgerMenu();
             
             // Bersihkan URL
@@ -2559,7 +2561,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const cleanUrl = window.location.pathname + window.location.hash;
                 window.history.replaceState({}, document.title, cleanUrl);
             }
-        }, 500); // Delay untuk pastikan DOM & sidebar sedia
+        }, 500);
     }
 });
 
