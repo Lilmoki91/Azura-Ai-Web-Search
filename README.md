@@ -53,7 +53,7 @@
 
 > 🎯 **Objektif**: Menyediakan platform carian pendidikan yang memanfaatkan AI untuk merumuskan maklumat dari pelbagai sumber, memudahkan pembelajaran dan penyelidikan.
 
-Dibangunkan persendirian oleh seorang **pelajar Sekolah Menengah Kebangsaan Rantau Panjang Klang Selangor Malaysia 🇲🇾,** bertujuan sebagai projek pembelajaran dan sumbangan kepada komuniti teknologi tempatan Malaysia 🇲🇾.
+Dibangunkan persendirian oleh **Zulkarnain bin Suyitno — pelajar Sekolah Menengah Kebangsaan Rantau Panjang Klang Selangor Malaysia 🇲🇾,** bertujuan sebagai projek pembelajaran dan sumbangan kepada komuniti teknologi tempatan Malaysia 🇲🇾.
 
 ### Teknologi Utama:
 
