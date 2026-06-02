@@ -38,7 +38,7 @@
 - [Cara Guna](#-cara-guna)
 - [Tangkapan Skrin](#-tangkapan-skrin)
 - [Sumbangan](#-sumbangan)
-- [Kredit](#-kredit-dan-penghargaan)
+- [Kredit dan Penghargaan](#-kredit-dan-penghargaan)
 - [Pembangun](#-pembangun)
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma dan Sumbangan](#-derma-dan-sumbangan)
