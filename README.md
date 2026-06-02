@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [Peringatan Iman Digital, Jauhi Syirik Era Moden](#-🤲-Peringatan-Iman-Digital,--Jauhi-Syirik-Era-Moden)
+- [peringatan Iman Digital, Jauhi Syirik Era Moden](#-peringatan-Iman-Digital,--Jauhi-Syirik-Era-Moden)
 
 ---
 
@@ -563,6 +563,7 @@ SOFTWARE.
 ```
 
 #### 📄 Baca Lesen Penuh
+
 
 ## 🤲 peringatan Iman Digital, Jauhi Syirik Era Moden
 
