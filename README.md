@@ -38,10 +38,10 @@
 - [Cara Guna](#-cara-guna)
 - [Tangkapan Skrin](#-tangkapan-skrin)
 - [Sumbangan](#-sumbangan)
-- [Kredit](#-kredit--&--penghargaan)
+- [Kredit](#-kredit--dan--penghargaan)
 - [Pembangun](#-pembangun)
 - [Pengiktirafan](#-pengiktirafan)
-- [Derma / Sokongan](#-derma--/--sumbangan)
+- [Derma / Sokongan](#-derma--dan--sumbangan)
 - [Lesen](#-lesen)
 - [Penutup](#-penutup)
 
@@ -338,7 +338,7 @@ git push origin fitur-baru-anda
 
 ---
 
-## ❤️ Kredit & Penghargaan
+## ❤️ Kredit dan Penghargaan
 
 ### Sumbangan:
 
@@ -417,7 +417,7 @@ Terima kasih khas kepada:
 
 ---
 
-## ☕ Derma / Sumbangan
+## ☕ Derma dan Sumbangan
 
 > Platform ini dibangunkan secara persendirian dengan sumber terhad. Jika anda rasa projek ini bermanfaat dan ingin menyokong, berikut adalah kaedah pembayaran yang tersedia:
 
