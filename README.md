@@ -538,6 +538,7 @@ Mengubahsuai kod Menanggalkan notis hak cipta
 Mengedarkan semula -
 Menggunakan secara peribadi -
 
+#### 📄 Baca Lesen Penuh
 ```
 MIT License
 
@@ -561,7 +562,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-#### 📄 Baca Lesen Penuh
 
 ---
 
@@ -606,7 +606,7 @@ SOFTWARE.
 
 ---
 
-### 🕊️ Penutup
+## 🕊️ Penutup
 
 > *“Sebaik-baik manusia ialah yang paling bermanfaat untuk manusia lain.”*  
 > (Hadis riwayat Ahmad, Thabrani)
