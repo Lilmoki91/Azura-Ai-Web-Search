@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [🤲 Peringatan Iman Digital — Jauhi Syirik Era Moden](#-🤲 Peringatan Iman Digital — Jauhi Syirik Era Moden)
+- [Peringatan Iman Digital, Jauhi Syirik Era Moden](#-Peringatan-Iman-Digital,-Jauhi-Syirik-Era-Moden)
 
 ---
 
@@ -564,14 +564,14 @@ SOFTWARE.
 
 #### 📄 Baca Lesen Penuh
 
-# 🤲 Peringatan Iman Digital — Jauhi Syirik Era Moden
+## 🤲 peringatan Iman Digital, Jauhi Syirik Era Moden
 
 > *“Nauzubillah min zalik.”*  
 > **Kami berlindung kepada Allah daripada menyembah teknologi, mencintai kod melebihi wahyu, atau mengagungkan AI sebagai tandingan Allah.**
 
 ---
 
-## 🔥 Tanda-tanda ‘Syirik Digital’ (muhasabah bersama)
+### 🔥 Tanda-tanda ‘Syirik Digital’ (muhasabah bersama)
 
 | Tanda | Muhasabah |
 |-------|------------|
@@ -582,7 +582,7 @@ SOFTWARE.
 
 ---
 
-## 📿 Doa Mohon Dijauhkan dari Syirik Digital
+### 📿 Doa Mohon Dijauhkan dari Syirik Digital
 
 > *“Ya Allah, selamatkan kami dari menyembah algoritma, mengagungkan AI, dan meletakkan kod sebagai tandingan wahyu-Mu.”*
 
@@ -594,7 +594,7 @@ SOFTWARE.
 
 ---
 
-## 📌 Komitmen Projek Ini (Dengan Niat Lillah)
+### 📌 Komitmen Projek Ini (Dengan Niat Lillah)
 
 1. **Kod ini hanyalah alat** — yang menentukan keselamatan dan kejayaan hanyalah Allah.
 2. **Tidak mengaku AI atau kod sebagai ‘maha tahu’** — segala output adalah `estimasi`, bukan wahyu.
@@ -603,7 +603,7 @@ SOFTWARE.
 
 ---
 
-## 🕊️ Penutup
+### 🕊️ Penutup
 
 > *“Sebaik-baik manusia ialah yang paling bermanfaat untuk manusia lain.”*  
 > (Hadis riwayat Ahmad, Thabrani)
