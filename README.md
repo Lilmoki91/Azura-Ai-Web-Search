@@ -44,6 +44,7 @@
 - [Derma dan Sumbangan](#-derma-dan-sumbangan)
 - [Lesen](#-lesen)
 - [Pesanan dan Penutup](#-pesanan-dan-penutup)
+- [Pesanan dan Penutup teks jawi](#-pesanan-dan-penutup-teks-jawi)
 
 ---
 
