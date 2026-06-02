@@ -599,7 +599,7 @@ SOFTWARE.
 
 ### 📌 Komitmen Projek Ini (Dengan Niat Lillah)
 
-1. **Kod ini hanyalah alat** — yang menentukan keselamatan dan kejayaan hanyalah Allah.
+1. **Kod ini hanyalah alat** — yang menentukan keselamatan dan kejayaan hanyalah Tuhan Allah.
 2. **Tidak mengaku AI atau kod sebagai ‘Maha Tahu’** — segala output adalah `estimasi`, bukan wahyu.
 3. **Mengingatkan sesama developer** — jadikan setiap `commit` sebagai peluang bertaubat, bukan sombong.
 4. **Jika tersilap (niat / cara) — segera taubat nasuha dan perbaiki.**
