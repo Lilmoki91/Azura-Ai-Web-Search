@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma dan Sumbangan](#-derma-dan-sumbangan)
 - [Lesen](#-lesen)
-- [Penutup](#-penutup)
+- [Pesanan dan Penutup](#-pesanan-dan-penutup)
 
 ---
 
@@ -565,9 +565,9 @@ SOFTWARE.
 
 ---
 
-## IMAN DIGITAL
+## Pesanan dan Penutup
 
-### 🤲 peringatan Iman Digital, Jauhi Syirik Era Moden
+### 🤲 Pesanan peringatan Iman Digital, Jauhi Syirik Era Moden!
 
 > *“Nauzubillah min zalik.”*  
 > **Kami berlindung kepada Allah daripada menyembah teknologi, mencintai kod melebihi wahyu, atau mengagungkan AI sebagai tandingan Allah.**
@@ -606,7 +606,7 @@ SOFTWARE.
 
 ---
 
-## 🕊️ Penutup
+### 🕊️ Penutup
 
 > *“Sebaik-baik manusia ialah yang paling bermanfaat untuk manusia lain.”*  
 > (Hadis riwayat Ahmad, Thabrani)
