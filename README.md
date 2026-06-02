@@ -38,10 +38,10 @@
 - [Cara Guna](#-cara-guna)
 - [Tangkapan Skrin](#-tangkapan-skrin)
 - [Sumbangan](#-sumbangan)
-- [Kredit](#-kredit--dan--penghargaan)
+- [Kredit](#-kredit-dan-penghargaan)
 - [Pembangun](#-pembangun)
 - [Pengiktirafan](#-pengiktirafan)
-- [Derma / Sokongan](#-derma--dan--sumbangan)
+- [Derma dan Sumbangan](#-derma-dan-sumbangan)
 - [Lesen](#-lesen)
 - [Penutup](#-penutup)
 
