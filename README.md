@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [Penutup](#-Penutup)
+- [Penutup](#-penutup)
 
 ---
 
