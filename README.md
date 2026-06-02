@@ -563,53 +563,6 @@ SOFTWARE.
 
 #### 📄 Baca Lesen Penuh
 
-
-
-<div align="center">
-  <hr width="80%">
-
-  <p>
-    <a href="#-azura-ai-web-search-">⬆️ Kembali ke Atas</a>
-  </p>
-
-  <p>
-    <img src="https://img.shields.io/github/stars/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub stars"/>
-    <img src="https://img.shields.io/github/forks/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub forks"/>
-    <img src="https://img.shields.io/github/watchers/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub watchers"/>
-  </p>
-
-  <p>
-    <b>Jom #SumberTerbuka & hidupkan ekosistem AI Malaysia!</b>
-  </p>
-
-  <p>
-    <img src="https://img.shields.io/badge/🇲🇾_Dibangunkan_di_Malaysia_dengan_❤️_untuk_pendidikan-8A2BE2?style=for-the-badge" alt="Dibangunkan di Malaysia"/>
-  </p>
-
-  <p>
-    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search">📦 GitHub Repo</a> •
-    <a href="https://azura-ai-web-search.pages.dev">🚀 Demo Langsung</a> •
-    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search/issues">🐛 Report Bug</a> •
-    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search/fork">🍴 Fork Repo</a>
-  </p>
-
-  <p>
-    <sub>📅 Last updated: Mac 2026</sub>
-  </p>
-
-  <p>
-    <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.png" alt="Azura AI Icon" width="250"/>
-  </p>
-
-  <p>
-    🎀 <b>Azura AI - Master of Ribbons Educational 2026</b> ✨
-  </p>
-
-  <p>
-    © 2026 Azura AI Web Search | Hak cipta terpelihara
-  </p>
-</div>
-
 # 🤲 Peringatan Iman Digital — Jauhi Syirik Era Moden
 
 > *“Nauzubillah min zalik.”*  
@@ -657,6 +610,51 @@ SOFTWARE.
 **🌱 Projek ini dibuka dengan `Bismillah`, dijalankan dengan `tawakkal`, ditutup dengan `Alhamdulillah`.**
 
 — Untuk mereka yang membaca, mengguna, dan menyebar: **jangan lupa niat.**
+
+<div align="center">
+  <hr width="80%">
+
+  <p>
+    <a href="#-azura-ai-web-search-">⬆️ Kembali ke Atas</a>
+  </p>
+
+  <p>
+    <img src="https://img.shields.io/github/stars/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub stars"/>
+    <img src="https://img.shields.io/github/forks/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub forks"/>
+    <img src="https://img.shields.io/github/watchers/Lilmoki91/Azura-Ai-Web-Search?style=social" alt="GitHub watchers"/>
+  </p>
+
+  <p>
+    <b>Jom #SumberTerbuka & hidupkan ekosistem AI Malaysia!</b>
+  </p>
+
+  <p>
+    <img src="https://img.shields.io/badge/🇲🇾_Dibangunkan_di_Malaysia_dengan_❤️_untuk_pendidikan-8A2BE2?style=for-the-badge" alt="Dibangunkan di Malaysia"/>
+  </p>
+
+  <p>
+    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search">📦 GitHub Repo</a> •
+    <a href="https://azura-ai-web-search.pages.dev">🚀 Demo Langsung</a> •
+    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search/issues">🐛 Report Bug</a> •
+    <a href="https://github.com/Lilmoki91/Azura-Ai-Web-Search/fork">🍴 Fork Repo</a>
+  </p>
+
+  <p>
+    <sub>📅 Last updated: Mac 2026</sub>
+  </p>
+
+  <p>
+    <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/AZURA-AI.png" alt="Azura AI Icon" width="250"/>
+  </p>
+
+  <p>
+    🎀 <b>Azura AI - Master of Ribbons Educational 2026</b> ✨
+  </p>
+
+  <p>
+    © 2026 Azura AI Web Search | Hak cipta terpelihara
+  </p>
+</div>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/johan%26Azura-Ai.png" alt="Azura AI Web Search Banner" width="100%" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"/>
