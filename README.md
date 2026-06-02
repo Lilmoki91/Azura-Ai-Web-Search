@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [Peringatan Iman Digital](#-IMAN--DIGITAL)
+- [IMAN DIGITAL](#-IMAN--DIGITAL)
 
 ---
 
