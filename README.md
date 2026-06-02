@@ -610,6 +610,54 @@ SOFTWARE.
   </p>
 </div>
 
+# 🤲 Peringatan Iman Digital — Jauhi Syirik Era Moden
+
+> *“Nauzubillah min zalik.”*  
+> **Kami berlindung kepada Allah daripada menyembah teknologi, mencintai kod melebihi wahyu, atau mengagungkan AI sebagai tandingan Allah.**
+
+---
+
+## 🔥 Tanda-tanda ‘Syirik Digital’ (muhasabah bersama)
+
+| Tanda | Muhasabah |
+|-------|------------|
+| ❌ Lebih percaya kepada AI daripada Allah | Adakah aku bertanya AI untuk hukum, tetapi malas buka Al-Quran? |
+| ❌ Mengorbankan ibadah demi ‘fine-tuning’ model | Adakah aku bangun malam untuk training AI, tetapi solat tahajjud / subuh ditinggal? |
+| ❌ Menjadikan ‘repository’ sebagai kitab | Adakah aku membaca `README` dengan tekun, tetapi lupa membaca Al-Quran? |
+| ❌ Sombong dengan ‘kehebatan kod’ | Adakah aku berkata: *“Sistemku kalis kuantum — aku selamat tanpa Allah”?* |
+
+---
+
+## 📿 Doa Mohon Dijauhkan dari Syirik Digital
+
+> *“Ya Allah, selamatkan kami dari menyembah algoritma, mengagungkan AI, dan meletakkan kod sebagai tandingan wahyu-Mu.”*
+
+> *“Jangan biarkan kami tersungkur di hadapan server, tetapi lupa bersujud kepada-Mu.”*
+
+> *“Jadikan teknologi ini sebagai alat untuk mendekat kepada-Mu, bukan menjauh.”*
+
+> *“Aamiin, Ya Rabbal ‘Alamin.”*
+
+---
+
+## 📌 Komitmen Projek Ini (Dengan Niat Lillah)
+
+1. **Kod ini hanyalah alat** — yang menentukan keselamatan dan kejayaan hanyalah Allah.
+2. **Tidak mengaku AI atau kod sebagai ‘maha tahu’** — segala output adalah `estimasi`, bukan wahyu.
+3. **Mengingatkan sesama developer** — jadikan setiap `commit` sebagai peluang bertaubat, bukan sombong.
+4. **Jika tersilap (niat / cara) — segera taubat dan perbaiki.**
+
+---
+
+## 🕊️ Penutup
+
+> *“Sebaik-baik manusia ialah yang paling bermanfaat untuk manusia lain.”*  
+> (Hadis riwayat Ahmad, Thabrani)
+
+**🌱 Projek ini dibuka dengan `Bismillah`, dijalankan dengan `tawakkal`, ditutup dengan `Alhamdulillah`.**
+
+— Untuk mereka yang membaca, mengguna, dan menyebar: **jangan lupa niat.**
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/Lilmoki91/Azura-Ai-Web-Search/refs/heads/main/johan%26Azura-Ai.png" alt="Azura AI Web Search Banner" width="100%" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"/>
 </p>
