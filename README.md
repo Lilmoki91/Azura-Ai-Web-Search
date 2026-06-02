@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [peringatan Iman Digital, Jauhi Syirik Era Moden](#-peringatan-Iman-Digital,--Jauhi-Syirik-Era-Moden)
+- [peringatan Iman Digital, Jauhi Syirik Era Moden](#-peringatan--Iman--Digital,--Jauhi--Syirik--Era--Moden)
 
 ---
 
