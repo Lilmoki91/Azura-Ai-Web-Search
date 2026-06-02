@@ -43,7 +43,7 @@
 - [Pengiktirafan](#-pengiktirafan)
 - [Derma / Sokongan](#-derma--sumbangan)
 - [Lesen](#-lesen)
-- [peringatan Iman Digital, Jauhi Syirik Era Moden](#-peringatan--Iman--Digital,--Jauhi--Syirik--Era--Moden)
+- [Peringatan Iman Digital](#-IMAN--DIGITAL)
 
 ---
 
@@ -561,11 +561,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
 #### 📄 Baca Lesen Penuh
 
+---
 
-## 🤲 peringatan Iman Digital, Jauhi Syirik Era Moden
+## IMAN DIGITAL
+
+### 🤲 peringatan Iman Digital, Jauhi Syirik Era Moden
 
 > *“Nauzubillah min zalik.”*  
 > **Kami berlindung kepada Allah daripada menyembah teknologi, mencintai kod melebihi wahyu, atau mengagungkan AI sebagai tandingan Allah.**
